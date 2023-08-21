@@ -35,3 +35,8 @@ button:hover {
     cursor: pointer;
     background-color: #e2a3ac;
 }
+.btn_container {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}
