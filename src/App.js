@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+// eslint-disable-next-line
+import AuthDetails from "./components/auth/AuthDetails";
+import Register from "./pages/RegisterPage";
+import Signin from "./pages/SigninPage";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <nav>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/register">Create an Account</Link>
+          </li>
+          <li>
+            <Link>
+              <AuthDetails />
+            </Link>
+          </li>
+        </ul>
+      </nav>
+      <Routes>
+        {/* <Route path="/" exact component={} /> */}
+        <Route path="/signin" element={<Signin />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
+    </Router>
   );
 }
 

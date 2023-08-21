@@ -1,0 +1,37 @@
+.signin_container {
+    text-align: center;
+    height: 80vh;
+    width: 80%;
+    margin: auto;
+    padding-top: 50px;
+}
+.inputs_container {
+    display: flex;
+    flex-direction: column;
+    justify-content:flex-end;
+    width: 40%;
+    height: 20vh;
+    padding: 10px;
+    margin: auto;
+}
+
+input {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 6px;
+}
+
+button {
+    width: 100px;
+    height: 40px;
+    background-color: #C9364A;
+    border-radius: 6px;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: #e2a3ac;
+}
