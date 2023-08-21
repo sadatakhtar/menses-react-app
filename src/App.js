@@ -6,7 +6,14 @@ import AuthDetails from "./components/auth/AuthDetails";
 import Register from "./pages/RegisterPage";
 import Signin from "./pages/SigninPage";
 
+import { useSelector } from 'react-redux'
+import { getUserStatus, getValue } from './features/usersJourney/UserSlice'
+
 function App() {
+  // TODO: both cstates below are for testing purposes only and can be removed.
+  const userStatusRedux = useSelector(getUserStatus);
+  const valueRedux = useSelector(getValue)
+
   return (
     <Router>
       <nav>
@@ -22,6 +29,10 @@ function App() {
               <AuthDetails />
             </Link>
           </li>
+          <li>
+            {userStatusRedux}
+          </li>
+          <li>{valueRedux}</li>
         </ul>
       </nav>
       <Routes>
