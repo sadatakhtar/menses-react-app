@@ -18,6 +18,7 @@ const Register = () => {
       })
       .catch((error) => {
         console.error(error.message);
+        alert('Oops, something went wrong!')
       });
   };
 
