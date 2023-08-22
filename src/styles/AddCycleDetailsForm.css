@@ -1,0 +1,14 @@
+.container-lg {
+    border: 1px black solid;
+    display: flex;
+    justify-content: center;
+    width: 30%;
+    margin-top: 10%;
+    background-color: aliceblue;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    
+   
+}
