@@ -18,7 +18,7 @@ const App = () => {
 
   FirebaseAuthService.checkAuthChanges(setUser)
   return <div>
-    <h1>Menses App</h1>
+    <h1>CycleSync</h1>
     <Signin existingUser={user}/>
   </div>;
 };

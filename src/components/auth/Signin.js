@@ -35,6 +35,15 @@ const Signin = ({ existingUser }) => {
     }
   };
 
+  const handleLoginWithGoogle = async () => {
+    try {
+      await FirebaseAuthService.loginWithGoogle();
+    } catch (error) {
+      alert(error.message)
+    }
+
+  }
+
   const pageModel = (
     <div>
       {existingUser ? (
@@ -68,6 +77,9 @@ const Signin = ({ existingUser }) => {
             <button>Login</button>
             <button type="button" onClick={handleSendResetPasswordEmail}>
               Reset Password
+            </button>
+            <button type="button" onClick={handleLoginWithGoogle}>
+              Login with Google
             </button>
           </div>
         </form>
