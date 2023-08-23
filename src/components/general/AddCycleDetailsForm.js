@@ -8,7 +8,7 @@ const AddCycleDetailsForm = ({ handleAddCycleDetails }) => {
   const [cycleEndDate, setCycleEndDate] = useState("");
 
   const handleSubmitForm = (e) => {
-    e.preventDefult();
+    e.preventDefault();
 
     const newCycleDetails = {
       name,
