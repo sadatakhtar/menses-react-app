@@ -61,7 +61,7 @@ const Header = ({ existingUser }) => {
         <div className="collapse navbar-collapse" id="navbarText">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">Home</li>
-            <li className="nav-item">About</li>
+            <li className="nav-item">Register</li>
             <li className="nav-item">Contact</li>
           </ul>
           <span className="navbar-text">
