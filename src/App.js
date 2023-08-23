@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Signin from "./components/auth/Signin";
 import AddCycleDetailsForm from "./components/general/AddCycleDetailsForm";
+import Header from "./components/general/Header";
 import FirebaseAuthService from "./FirebaseAuthService";
 import FirebaseFirestoreService from "./FirebaseFirestoreService";
 
@@ -23,8 +24,8 @@ const App = () => {
   return (
     <>
       <div>
-        <h1>CycleSync</h1>
-        <Signin existingUser={user} />
+        {/* <Signin existingUser={user} /> */}
+        <Header existingUser={user}/>
       </div>
       <div>
         <AddCycleDetailsForm handleAddCycleDetails={handleAddCycleDetails}/>

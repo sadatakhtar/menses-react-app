@@ -1,0 +1,36 @@
+.btn-container {
+    display: flex;
+    justify-content: space-between;
+    /* margin: 2px; */
+    
+}
+
+.btn-container > button {
+    border: 1px black solid;
+}
+.signin-container {
+    width: 400px;
+    margin: 2px;
+   
+}
+
+.login-form-inputs {
+    width: 230px;
+    font-size: small;
+}
+
+.text-style {
+    font-size: medium;
+    font-weight: 400;
+    margin: 8px;
+}
+
+.welcome-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    /* width: 600px; */
+}
+
+
