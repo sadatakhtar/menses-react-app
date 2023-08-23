@@ -46,9 +46,7 @@ const Header = ({ existingUser }) => {
   return (
     <nav className="navbar navbar-expand-lg bg-primary">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
-          CycleSync
-        </a>
+        <h1>CycleSync</h1>
         <button
           className="navbar-toggler"
           type="button"
@@ -62,28 +60,20 @@ const Header = ({ existingUser }) => {
         </button>
         <div className="collapse navbar-collapse" id="navbarText">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">
-                Home
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                About
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                Contact
-              </a>
-            </li>
+            <li className="nav-item">Home</li>
+            <li className="nav-item">About</li>
+            <li className="nav-item">Contact</li>
           </ul>
           <span className="navbar-text">
             <div className="signin-container">
               {existingUser ? (
                 <div className="welcome-container">
                   <h3 className="text-style">Welcome, {existingUser.email}</h3>
-                  <button type="button" className="btn btn-secondary" onClick={handleLogout}>
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    onClick={handleLogout}
+                  >
                     Logout
                   </button>
                 </div>
@@ -91,25 +81,25 @@ const Header = ({ existingUser }) => {
                 <form onSubmit={handleSubmit}>
                   {/* <label>
                     Username (email): */}
-                    <input
-                      type="email"
-                      required
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      className="form-control mt-2"
-                      placeholder="Username (email)"
-                    />
+                  <input
+                    type="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="form-control mt-2"
+                    placeholder="Username (email)"
+                  />
                   {/* </label> */}
                   {/* <label>
                     Password: */}
-                    <input
-                      type="password"
-                      required
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      className="form-control mt-2 mb-2"
-                      placeholder="Password"
-                    />
+                  <input
+                    type="password"
+                    required
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="form-control mt-2 mb-2"
+                    placeholder="Password"
+                  />
                   {/* </label> */}
                   <div className="btn-container">
                     <button className="btn btn-primary">Login</button>
@@ -120,7 +110,11 @@ const Header = ({ existingUser }) => {
                     >
                       Reset Password
                     </button>
-                    <button className="btn btn-primary" type="button" onClick={handleLoginWithGoogle}>
+                    <button
+                      className="btn btn-primary"
+                      type="button"
+                      onClick={handleLoginWithGoogle}
+                    >
                       Login with Google
                     </button>
                   </div>

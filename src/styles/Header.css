@@ -33,4 +33,11 @@
     /* width: 600px; */
 }
 
+ul {
+    width: 15%;
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+}
+
 
