@@ -1,0 +1,35 @@
+.main-container {
+  height: 800px;
+
+  background: linear-gradient(to bottom, #eff0f5, rgb(184, 181, 197));
+  min-height: 100vh;
+}
+
+.intro {
+  /* border: 1px red solid; */
+  padding: 20px 20px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 30vh;
+  /* text-align: center; */
+}
+
+.intro > h4 {
+    font-weight: 400;
+    padding-bottom: 10px;
+    font-size: medium;
+}
+
+.intro > h5 {
+    font-weight: 400;
+}
+
+p {
+    font-weight: 300;
+}
+
+.get-started {
+    /* text-align: center; */
+    padding: 20px;
+}

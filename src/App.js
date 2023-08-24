@@ -1,11 +1,15 @@
 import React, { useState } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Register from "./components/auth/Register";
 // eslint-disable-next-line
 import Signin from "./components/auth/Signin";
-import AddCycleDetailsForm from "./components/general/AddCycleDetailsForm";
-import Header from "./components/general/Header";
+// import AddCycleDetailsForm from "./components/general/AddCycleDetailsForm";
+// import Header from "./components/general/Header";
 import FirebaseAuthService from "./FirebaseAuthService";
 import FirebaseFirestoreService from "./FirebaseFirestoreService";
-import MainPage from './pages/MainPage'
+import FirstPage from "./pages/FirstPage";
+import SigninPage from "./pages/SigninPage";
+// import MainPage from './pages/MainPage'
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -27,22 +31,20 @@ const App = () => {
     }
   };
 
-  const mainPage = (
-    <MainPage />
-  )
-  
   return (
-    <>
-      <div>
-        {/* <Signin existingUser={user} /> */}
-        <Header existingUser={user} />
-      </div>
-      <div>
-        {user ? (
-          <AddCycleDetailsForm handleAddCycleDetails={handleAddCycleDetails} />
-        ) : (mainPage)}
-      </div>
-    </>
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <FirstPage
+            user={user}
+            handleAddCycleDetails={handleAddCycleDetails}
+          />
+        }
+      />
+      <Route path="/login" element={<SigninPage />} />
+      <Route path="/register" element={<Register />} />
+    </Routes>
   );
 };
 

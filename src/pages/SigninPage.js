@@ -1,6 +1,7 @@
 import React from 'react'
 import Signin from '../components/auth/Signin'
-import Footer from '../components/Footer'
+import Footer from '../components/general/Footer'
+
 
 const SigninPage = () => {
   return (
