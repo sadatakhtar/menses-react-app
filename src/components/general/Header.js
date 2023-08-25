@@ -47,7 +47,7 @@ const Header = ({ existingUser }) => {
   return (
     <nav className="navbar navbar-expand-lg bg-primary">
       <div className="container-fluid">
-        <h1>CycleSync</h1>
+        <h1><span>C</span>ycle<span>S</span>ync</h1>
         <button
           className="navbar-toggler"
           type="button"
@@ -62,14 +62,14 @@ const Header = ({ existingUser }) => {
         <div className="collapse navbar-collapse" id="navbarText">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link to="/" style={{ textDecoration: "none", color: "black" }}>
+              <Link to="/" style={{ textDecoration: "none", color: "black", fontWeight: '300' }}>
                 Home
               </Link>
             </li>
             <li className="nav-item">
               <Link
                 to="/register"
-                style={{ textDecoration: "none", color: "black" }}
+                style={{ textDecoration: "none", color: "black", fontWeight: '300' }}
               >
                 Register
               </Link>
@@ -77,7 +77,7 @@ const Header = ({ existingUser }) => {
             <li className="nav-item">
               <Link
                 to="/contact"
-                style={{ textDecoration: "none", color: "black" }}
+                style={{ textDecoration: "none", color: "black", fontWeight: '300' }}
               >
                 Contact
               </Link>
