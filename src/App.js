@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import RegisterPage from './pages/RegisterPage'
-// eslint-disable-next-line
-import Signin from "./components/auth/Signin";
-// import AddCycleDetailsForm from "./components/general/AddCycleDetailsForm";
-// import Header from "./components/general/Header";
 import FirebaseAuthService from "./FirebaseAuthService";
 import FirebaseFirestoreService from "./FirebaseFirestoreService";
 import FirstPage from "./pages/FirstPage";
 import SigninPage from "./pages/SigninPage";
-// import MainPage from './pages/MainPage'
+import ContactPage from "./pages/ContactPage";
+
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -44,6 +41,7 @@ const App = () => {
       />
       <Route path="/login" element={<SigninPage />} />
       <Route path="/register" element={<RegisterPage />} />
+      <Route path="/contact" element={<ContactPage />} />
     </Routes>
   );
 };
