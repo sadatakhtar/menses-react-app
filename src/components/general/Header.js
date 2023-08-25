@@ -12,15 +12,15 @@ const Header = ({ existingUser }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const dispatch = useDispatch();
+  const userEmailRedux = useSelector(getUserEmail);
+  
   useEffect(() => {
     dispatch(setUserEmail(existingUser?.email));
     console.log("============> inside useEffect:", userEmailRedux);
-  }, [existingUser]);
+  }, [existingUser, dispatch, userEmailRedux]);
 
-  const dispatch = useDispatch();
-  const userEmailRedux = useSelector(getUserEmail);
 
- 
   const handleLogout = () => {
     FirebaseAuthService.logoutUser();
   };
