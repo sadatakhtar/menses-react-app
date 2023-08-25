@@ -1,0 +1,11 @@
+.register-page-container {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    padding-top: 150px;
+    /* height: 600px; */
+
+    background: linear-gradient(to bottom, #eff0f5, rgb(184, 181, 197));
+    min-height: 80vh;
+}

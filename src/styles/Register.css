@@ -1,0 +1,11 @@
+.register-form-wrapper {
+    border: 1px green solid;
+
+}
+.register-btn-container {
+    border: 1px red solid;   
+}
+button {
+    margin: 4px;
+
+}

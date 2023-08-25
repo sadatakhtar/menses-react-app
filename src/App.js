@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Register from "./components/auth/Register";
+import RegisterPage from './pages/RegisterPage'
 // eslint-disable-next-line
 import Signin from "./components/auth/Signin";
 // import AddCycleDetailsForm from "./components/general/AddCycleDetailsForm";
@@ -43,7 +44,7 @@ const App = () => {
         }
       />
       <Route path="/login" element={<SigninPage />} />
-      <Route path="/register" element={<Register />} />
+      <Route path="/register" element={<RegisterPage />} />
     </Routes>
   );
 };

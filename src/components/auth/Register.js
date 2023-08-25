@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import "../../styles/Register.css";
 import FirebaseAuthService from "../../FirebaseAuthService";
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 
 const Register = ({ existingUser }) => {
   const [email, setEmail] = useState("");
@@ -15,6 +16,7 @@ const Register = ({ existingUser }) => {
       await FirebaseAuthService.registerUser(email, password);
       setEmail("");
       setPassword("");
+      navigate("/login");
     } catch (error) {
       alert(error.message);
     }
@@ -24,17 +26,15 @@ const Register = ({ existingUser }) => {
     FirebaseAuthService.logoutUser();
   };
 
-
   const handleSignUpWithGoogle = async () => {
     try {
       await FirebaseAuthService.loginWithGoogle();
-      alert('Successfully created an account.')
-      navigate('/login')
+      alert("Successfully created an account.");
+      navigate("/login");
     } catch (error) {
-      alert(error.message)
+      alert(error.message);
     }
-
-  }
+  };
 
   const pageModel = (
     <div>
@@ -46,32 +46,40 @@ const Register = ({ existingUser }) => {
           </button>
         </div>
       ) : (
-        <form onSubmit={handleSubmit}>
-          <label>
-            Username (email):
+        <div className="register-form-wrapper">
+          <form onSubmit={handleSubmit}>
             <input
               type="email"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              className="form-control mt-2 mb-2"
+              placeholder="Email"
             />
-          </label>
-          <label>
-            Password:
+
             <input
               type="password"
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              className="form-control mt-2 mb-2"
+              placeholder="Password"
             />
-          </label>
-          <div>
-            <button>Register with email & password</button>
-            <button type="button" onClick={handleSignUpWithGoogle}>
-              Sign up with Google
-            </button>
-          </div>
-        </form>
+
+            <div className="register-btn-container">
+              <button className="btn btn-primary">
+                Register with email & password
+              </button>
+              <button
+                className="btn btn-primary"
+                type="button"
+                onClick={handleSignUpWithGoogle}
+              >
+                Sign up with Google
+              </button>
+            </div>
+          </form>
+        </div>
       )}
     </div>
   );
