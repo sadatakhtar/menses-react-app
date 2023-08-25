@@ -1,12 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../styles/Header.css";
 import FirebaseAuthService from "../../FirebaseAuthService";
+import {
+  setUserEmail,
+  getUserEmail,
+} from "../../features/usersJourney/UserSlice";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Header = ({ existingUser }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  useEffect(() => {
+    dispatch(setUserEmail(existingUser?.email));
+    console.log("============> inside useEffect:", userEmailRedux);
+  }, [existingUser]);
+
+  const dispatch = useDispatch();
+  const userEmailRedux = useSelector(getUserEmail);
+
+ 
   const handleLogout = () => {
     FirebaseAuthService.logoutUser();
   };
@@ -47,7 +61,9 @@ const Header = ({ existingUser }) => {
   return (
     <nav className="navbar navbar-expand-lg bg-primary">
       <div className="container-fluid">
-        <h1><span>C</span>ycle<span>S</span>ync</h1>
+        <h1>
+          <span>C</span>ycle<span>S</span>ync
+        </h1>
         <button
           className="navbar-toggler"
           type="button"
@@ -62,14 +78,25 @@ const Header = ({ existingUser }) => {
         <div className="collapse navbar-collapse" id="navbarText">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link to="/" style={{ textDecoration: "none", color: "black", fontWeight: '300' }}>
+              <Link
+                to="/"
+                style={{
+                  textDecoration: "none",
+                  color: "black",
+                  fontWeight: "300",
+                }}
+              >
                 Home
               </Link>
             </li>
             <li className="nav-item">
               <Link
                 to="/register"
-                style={{ textDecoration: "none", color: "black", fontWeight: '300' }}
+                style={{
+                  textDecoration: "none",
+                  color: "black",
+                  fontWeight: "300",
+                }}
               >
                 Register
               </Link>
@@ -77,7 +104,11 @@ const Header = ({ existingUser }) => {
             <li className="nav-item">
               <Link
                 to="/contact"
-                style={{ textDecoration: "none", color: "black", fontWeight: '300' }}
+                style={{
+                  textDecoration: "none",
+                  color: "black",
+                  fontWeight: "300",
+                }}
               >
                 Contact
               </Link>

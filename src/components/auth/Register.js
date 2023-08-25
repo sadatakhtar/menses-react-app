@@ -16,7 +16,8 @@ const Register = ({ existingUser }) => {
       await FirebaseAuthService.registerUser(email, password);
       setEmail("");
       setPassword("");
-      navigate("/login");
+      // TODO: redirect to login screen once developed
+      navigate("/");
     } catch (error) {
       alert(error.message);
     }

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "../../styles/AddCycleDetailsForm.css";
+import { useSelector } from "react-redux";
+import { getUserEmail } from "../../features/usersJourney/UserSlice";
 
 const AddCycleDetailsForm = ({ handleAddCycleDetails }) => {
   const [name, setName] = useState("");
@@ -7,6 +9,9 @@ const AddCycleDetailsForm = ({ handleAddCycleDetails }) => {
   const [cycleStartDate, setCycleStartDate] = useState("");
   const [cycleEndDate, setCycleEndDate] = useState("");
 
+  const userEmailRedux = useSelector(getUserEmail);
+
+  console.log("========> redux value:", userEmailRedux);
   const handleSubmitForm = (e) => {
     e.preventDefault();
 
@@ -15,9 +20,10 @@ const AddCycleDetailsForm = ({ handleAddCycleDetails }) => {
       age,
       cycleStartDate,
       cycleEndDate,
+      account_email: userEmailRedux,
     };
 
-    handleAddCycleDetails(newCycleDetails)
+    handleAddCycleDetails(newCycleDetails);
   };
 
   const pageModel = (

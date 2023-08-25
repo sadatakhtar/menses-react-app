@@ -27,7 +27,7 @@ const App = () => {
       alert(error.message);
     }
   };
-
+ console.log(`user fron App.js --> ${user}`)
   return (
     <Routes>
       <Route
