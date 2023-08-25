@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import Register from "./components/auth/Register";
 import RegisterPage from './pages/RegisterPage'
 // eslint-disable-next-line
 import Signin from "./components/auth/Signin";
