@@ -68,7 +68,7 @@ const Register = ({ existingUser }) => {
 
             <div className="register-btn-container">
               <button className="btn btn-primary">
-                Register with email & password
+                Register with email
               </button>
               <button
                 className="btn btn-primary"
