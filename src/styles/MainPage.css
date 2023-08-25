@@ -1,18 +1,14 @@
 .main-container {
-  height: 800px;
-
   background: linear-gradient(to bottom, #eff0f5, rgb(184, 181, 197));
-  min-height: 100vh;
+  min-height: 80vh;
 }
 
 .intro {
-  /* border: 1px red solid; */
-  padding: 20px 20px 20px 20px;
+  padding: 20px 20px 0px 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   height: 30vh;
-  /* text-align: center; */
 }
 
 .intro > h4 {
@@ -30,6 +26,6 @@ p {
 }
 
 .get-started {
-    /* text-align: center; */
     padding: 20px;
+    padding-top: 0;
 }

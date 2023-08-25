@@ -1,0 +1,14 @@
+li {
+    width: 200px;
+    margin: 4px;
+    text-decoration: none;
+    color: black;
+}
+
+nav {
+    height: 150px;
+}
+
+.custom-nav-item {
+    display: block;
+}

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../../styles/Header.css";
 import FirebaseAuthService from "../../FirebaseAuthService";
+import { Link } from "react-router-dom";
 
 const Header = ({ existingUser }) => {
   const [email, setEmail] = useState("");
@@ -60,9 +61,27 @@ const Header = ({ existingUser }) => {
         </button>
         <div className="collapse navbar-collapse" id="navbarText">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">Home</li>
-            <li className="nav-item">Register</li>
-            <li className="nav-item">Contact</li>
+            <li className="nav-item">
+              <Link to="/" style={{ textDecoration: "none", color: "black" }}>
+                Home
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link
+                to="/register"
+                style={{ textDecoration: "none", color: "black" }}
+              >
+                Register
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link
+                to="/contact"
+                style={{ textDecoration: "none", color: "black" }}
+              >
+                Contact
+              </Link>
+            </li>
           </ul>
           <span className="navbar-text">
             <div className="signin-container">
@@ -79,8 +98,6 @@ const Header = ({ existingUser }) => {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit}>
-                  {/* <label>
-                    Username (email): */}
                   <input
                     type="email"
                     required
@@ -89,9 +106,7 @@ const Header = ({ existingUser }) => {
                     className="form-control mt-2"
                     placeholder="Username (email)"
                   />
-                  {/* </label> */}
-                  {/* <label>
-                    Password: */}
+
                   <input
                     type="password"
                     required
@@ -100,7 +115,7 @@ const Header = ({ existingUser }) => {
                     className="form-control mt-2 mb-2"
                     placeholder="Password"
                   />
-                  {/* </label> */}
+
                   <div className="btn-container">
                     <button className="btn btn-primary">Login</button>
                     <button
