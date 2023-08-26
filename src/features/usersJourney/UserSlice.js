@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   // Add new states here
-  value: 777,
+ 
   userStatus: "Admin",
   loggedInUser: "",
   userEmail: "",
