@@ -6,6 +6,7 @@ import FirebaseFirestoreService from "./FirebaseFirestoreService";
 import FirstPage from "./pages/FirstPage";
 import SigninPage from "./pages/SigninPage";
 import ContactPage from "./pages/ContactPage";
+import NewCyclePage from "./pages/NewCyclePage";
 
 
 const App = () => {
@@ -42,6 +43,8 @@ const App = () => {
       <Route path="/login" element={<SigninPage />} />
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/contact" element={<ContactPage />} />
+      <Route path="/established-entry" element={<ContactPage />} />
+      <Route path="/new-entry" element={<NewCyclePage />} />
     </Routes>
   );
 };

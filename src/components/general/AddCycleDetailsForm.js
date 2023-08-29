@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import "../../styles/AddCycleDetailsForm.css";
 import { useSelector } from "react-redux";
 import { getUserEmail } from "../../features/usersJourney/UserSlice";
+import { handleAddCycleDetails } from '../../utils/FirestoreDbCall'
 
-const AddCycleDetailsForm = ({ handleAddCycleDetails }) => {
+const AddCycleDetailsForm = () => {
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
   const [cycleStartDate, setCycleStartDate] = useState("");
@@ -38,6 +39,7 @@ const AddCycleDetailsForm = ({ handleAddCycleDetails }) => {
             id="floatingInput"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            required
           />
         </label>
         <label htmlFor="floatingAge">
@@ -48,6 +50,7 @@ const AddCycleDetailsForm = ({ handleAddCycleDetails }) => {
             className="form-control mt-2"
             id="floatAge"
             onChange={(e) => setAge(e.target.value)}
+            required
           />
         </label>
 
