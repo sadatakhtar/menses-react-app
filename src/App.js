@@ -7,6 +7,9 @@ import FirstPage from "./pages/FirstPage";
 import SigninPage from "./pages/SigninPage";
 import ContactPage from "./pages/ContactPage";
 import NewCyclePage from "./pages/NewCyclePage";
+import EstablishedCyclePage from "./pages/EstablishedCyclePage";
+import ConfusedCyclePage from "./pages/ConfusedCyclePage";
+import ElderlyCyclePage from "./pages/ElderlyCyclePage";
 
 
 const App = () => {
@@ -43,8 +46,10 @@ const App = () => {
       <Route path="/login" element={<SigninPage />} />
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/contact" element={<ContactPage />} />
-      <Route path="/established-entry" element={<ContactPage />} />
+      <Route path="/established-entry" element={<EstablishedCyclePage />} />
       <Route path="/new-entry" element={<NewCyclePage />} />
+      <Route path="/confused-entry" element={<ConfusedCyclePage />} />
+      <Route path="/elderly-entry" element={<ElderlyCyclePage />} />
     </Routes>
   );
 };
