@@ -1,20 +1,23 @@
 import React from "react";
-import AddCycleDetailsForm from "../components/general/AddCycleDetailsForm";
+import Footer from "../components/general/Footer";
 import Header from "../components/general/Header";
+import MenuForm from "../components/general/MenuForm";
 import MainPage from "./MainPage";
 
-const FirstPage = ({ user, handleAddCycleDetails }) => {
-  
+const FirstPage = ({ user }) => {
   return (
     <>
       <div>
         <Header existingUser={user} />
       </div>
-      <div>
+      <div className="first-page-container">
         {user ? (
-          <AddCycleDetailsForm handleAddCycleDetails={handleAddCycleDetails} />
+          <>
+            <MenuForm user={user} />
+            <Footer />
+          </>
         ) : (
-            <MainPage />
+          <MainPage />
         )}
       </div>
     </>
