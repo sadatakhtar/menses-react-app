@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../../styles/Register.css";
 import FirebaseAuthService from "../../FirebaseAuthService";
+import firebase from "../../FirebaseConfig";
 import { useNavigate } from "react-router-dom";
 
 const Register = ({ existingUser }) => {
@@ -14,9 +15,29 @@ const Register = ({ existingUser }) => {
 
     try {
       await FirebaseAuthService.registerUser(email, password);
+
+      // NB: create a document in DB upon user registration
+      try {
+        const user = firebase.auth().currentUser;
+        // console.log('=====>>>>', user)
+        if (user) {
+          const db = firebase.firestore();
+          const userRef = db.collection("users").doc(user.uid);
+          await userRef.set({
+            firstTimeLoggedIn: false,
+            email: user.email,
+            name: user.displayName,
+            document_id: user.uid,
+          });
+
+          console.log("User document created upon signup");
+        }
+      } catch (error) {
+        console.error("Error encountered during signup: ", error);
+      }
+
       setEmail("");
       setPassword("");
-      // TODO: redirect to login screen once developed
       navigate("/");
     } catch (error) {
       alert(error.message);
@@ -68,9 +89,7 @@ const Register = ({ existingUser }) => {
             />
 
             <div className="register-btn-container">
-              <button className="btn btn-primary">
-                Register with email
-              </button>
+              <button className="btn btn-primary">Register with email</button>
               <button
                 className="btn btn-primary"
                 type="button"

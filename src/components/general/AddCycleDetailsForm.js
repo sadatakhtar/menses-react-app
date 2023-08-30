@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../../styles/AddCycleDetailsForm.css";
 import { useSelector } from "react-redux";
 import { getUserEmail } from "../../features/usersJourney/UserSlice";
-import { handleAddCycleDetails } from '../../utils/FirestoreDbCall'
+import firebase from "../../FirebaseConfig";
 
 const AddCycleDetailsForm = () => {
   const [name, setName] = useState("");
@@ -13,18 +13,32 @@ const AddCycleDetailsForm = () => {
   const userEmailRedux = useSelector(getUserEmail);
 
   console.log("========> redux value:", userEmailRedux);
-  const handleSubmitForm = (e) => {
+  const handleSubmitForm = async (e) => {
     e.preventDefault();
 
-    const newCycleDetails = {
-      name,
-      age,
-      cycleStartDate,
-      cycleEndDate,
-      account_email: userEmailRedux,
-    };
+    const user = firebase.auth().currentUser;
+    const db = firebase.firestore();
 
-    handleAddCycleDetails(newCycleDetails);
+    try {
+      const cycleDetailsRef = await db
+        .collection("cycle_details")
+        .doc(user.uid);
+      cycleDetailsRef.set({
+        name: name,
+        age: age,
+        cycle_start_date: cycleStartDate,
+        cycle_end_date: cycleEndDate,
+        // userRef: db.collection('users').doc('user_id'),
+        document_id: user.uid,
+        account_email: userEmailRedux,
+      });
+      console.log("Successfully added data to db");
+      alert(`Details added to DB successfully`);
+
+      // TODO: add redirection here
+    } catch (error) {
+      console.error("DB entry failed", error);
+    }
   };
 
   const pageModel = (
