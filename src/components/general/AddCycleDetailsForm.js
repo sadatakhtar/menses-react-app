@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../../styles/AddCycleDetailsForm.css";
 import { useSelector } from "react-redux";
+import { useNavigate } from 'react-router-dom'
 import { getUserEmail } from "../../features/usersJourney/UserSlice";
 import firebase from "../../FirebaseConfig";
 
@@ -11,6 +12,7 @@ const AddCycleDetailsForm = () => {
   const [cycleEndDate, setCycleEndDate] = useState("");
 
   const userEmailRedux = useSelector(getUserEmail);
+  const navigate = useNavigate();
 
   console.log("========> redux value:", userEmailRedux);
   const handleSubmitForm = async (e) => {
@@ -31,9 +33,12 @@ const AddCycleDetailsForm = () => {
         // userRef: db.collection('users').doc('user_id'),
         document_id: user.uid,
         account_email: userEmailRedux,
+        details_submitted_date: new Date(),
       });
       console.log("Successfully added data to db");
-      alert(`Details added to DB successfully`);
+      navigate('/confirmation')
+      // alert(`Details added to DB successfully`);
+
 
       // TODO: add redirection here
     } catch (error) {

@@ -10,6 +10,7 @@ import NewCyclePage from "./pages/NewCyclePage";
 import EstablishedCyclePage from "./pages/EstablishedCyclePage";
 import ConfusedCyclePage from "./pages/ConfusedCyclePage";
 import ElderlyCyclePage from "./pages/ElderlyCyclePage";
+import ConfirmationPage from "./pages/ConfirmationPage";
 
 
 const App = () => {
@@ -50,6 +51,7 @@ const App = () => {
       <Route path="/new-entry" element={<NewCyclePage />} />
       <Route path="/confused-entry" element={<ConfusedCyclePage />} />
       <Route path="/elderly-entry" element={<ElderlyCyclePage />} />
+      <Route path="/confirmation" element={<ConfirmationPage />} />
     </Routes>
   );
 };
