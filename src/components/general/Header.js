@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 const Header = ({ existingUser }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+ 
   const dispatch = useDispatch();
   const userEmailRedux = useSelector(getUserEmail);
 
@@ -45,6 +45,7 @@ const Header = ({ existingUser }) => {
               document_id: user.uid,
             });
             console.log("User document created upon Google signup");
+            // navigate("/");
           } else {
             console.log("User document already exists");
           }
@@ -55,6 +56,7 @@ const Header = ({ existingUser }) => {
     } catch (error) {
       alert(error.message);
     }
+   
   };
 
   const handleSubmit = async (e) => {
@@ -62,8 +64,16 @@ const Header = ({ existingUser }) => {
 
     try {
       await FirebaseAuthService.loginUser(email, password);
+
+      // const db = firebase.firestore()
+      // const snapshot = await db.collection('users').where('document_id', '==', '').get();
+      // const data = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+      // console.log('data ====>', data)
+      // TODO: add logic here if firstTimeLoggedIn => ....
+      
       setEmail("");
       setPassword("");
+      // navigate('/contact')
     } catch (error) {
       alert(error.message);
     }

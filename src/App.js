@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import RegisterPage from './pages/RegisterPage'
+import RegisterPage from "./pages/RegisterPage";
 import FirebaseAuthService from "./FirebaseAuthService";
 import FirebaseFirestoreService from "./FirebaseFirestoreService";
 import FirstPage from "./pages/FirstPage";
@@ -11,11 +11,10 @@ import EstablishedCyclePage from "./pages/EstablishedCyclePage";
 import ConfusedCyclePage from "./pages/ConfusedCyclePage";
 import ElderlyCyclePage from "./pages/ElderlyCyclePage";
 import ConfirmationPage from "./pages/ConfirmationPage";
-
+import SecondPage from "./pages/SecondPage";
 
 const App = () => {
   const [user, setUser] = useState(null);
-
   FirebaseAuthService.checkAuthChanges(setUser);
 
   const handleAddCycleDetails = async (newDetails) => {
@@ -32,7 +31,7 @@ const App = () => {
       alert(error.message);
     }
   };
- console.log(`user fron App.js --> ${user}`)
+  console.log(`user fron App.js --> ${user?.email}`);
   return (
     <Routes>
       <Route
@@ -52,6 +51,7 @@ const App = () => {
       <Route path="/confused-entry" element={<ConfusedCyclePage />} />
       <Route path="/elderly-entry" element={<ElderlyCyclePage />} />
       <Route path="/confirmation" element={<ConfirmationPage />} />
+      <Route path="/second-page" element={<SecondPage />} />
     </Routes>
   );
 };

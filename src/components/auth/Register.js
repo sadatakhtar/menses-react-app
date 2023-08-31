@@ -73,6 +73,7 @@ const Register = ({ existingUser }) => {
               document_id: user.uid,
             });
             console.log("User document created upon Google signup");
+            navigate("/");
           } else {
             console.log("User document already exists");
           }
