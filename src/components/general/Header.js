@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../../styles/Header.css";
 import FirebaseAuthService from "../../FirebaseAuthService";
+import firebase from '../../FirebaseConfig'
 import {
   setUserEmail,
   getUserEmail,
@@ -28,6 +29,25 @@ const Header = ({ existingUser }) => {
   const handleLoginWithGoogle = async () => {
     try {
       await FirebaseAuthService.loginWithGoogle();
+      try {
+        const user = firebase.auth().currentUser;
+        if (user) {
+          const db = firebase.firestore();
+          const userRef = db.collection("users").doc(user.uid);
+          await userRef.set({
+            firstTimeLoggedIn: false,
+            email: user.email,
+            name: user.displayName,
+            document_id: user.uid,
+          });
+
+          console.log("User document created upon Google signup");
+        }
+        
+      } catch (error) {
+        console.error('Error encountered during Google signup: ', error)
+      }
+
     } catch (error) {
       alert(error.message);
     }

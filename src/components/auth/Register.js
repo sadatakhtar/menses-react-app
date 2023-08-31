@@ -9,7 +9,7 @@ const Register = ({ existingUser }) => {
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
-
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -51,6 +51,25 @@ const Register = ({ existingUser }) => {
   const handleSignUpWithGoogle = async () => {
     try {
       await FirebaseAuthService.loginWithGoogle();
+
+      try {
+        const user = firebase.auth().currentUser;
+        if (user) {
+          const db = firebase.firestore();
+          const userRef = db.collection("users").doc(user.uid);
+          await userRef.set({
+            firstTimeLoggedIn: false,
+            email: user.email,
+            name: user.displayName,
+            document_id: user.uid,
+          });
+
+          console.log("User document created upon Google signup");
+        }
+        
+      } catch (error) {
+        console.error('Error encountered during Google signup: ', error)
+      }
       alert("Successfully created an account.");
       navigate("/login");
     } catch (error) {
