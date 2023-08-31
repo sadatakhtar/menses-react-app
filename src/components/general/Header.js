@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../../styles/Header.css";
 import FirebaseAuthService from "../../FirebaseAuthService";
-import firebase from '../../FirebaseConfig'
+import firebase from "../../FirebaseConfig";
 import {
   setUserEmail,
   getUserEmail,
@@ -15,12 +15,11 @@ const Header = ({ existingUser }) => {
 
   const dispatch = useDispatch();
   const userEmailRedux = useSelector(getUserEmail);
-  
+
   useEffect(() => {
     dispatch(setUserEmail(existingUser?.email));
     console.log("============> inside useEffect:", userEmailRedux);
   }, [existingUser, dispatch, userEmailRedux]);
-
 
   const handleLogout = () => {
     FirebaseAuthService.logoutUser();
@@ -34,20 +33,25 @@ const Header = ({ existingUser }) => {
         if (user) {
           const db = firebase.firestore();
           const userRef = db.collection("users").doc(user.uid);
-          await userRef.set({
-            firstTimeLoggedIn: false,
-            email: user.email,
-            name: user.displayName,
-            document_id: user.uid,
-          });
 
-          console.log("User document created upon Google signup");
+          // NB: Check if user doc already exists
+          const userDoc = await userRef.get();
+          if (!userDoc.exists) {
+            // NB: set data only on first login
+            await userRef.set({
+              firstTimeLoggedIn: false,
+              email: user.email,
+              name: user.displayName,
+              document_id: user.uid,
+            });
+            console.log("User document created upon Google signup");
+          } else {
+            console.log("User document already exists");
+          }
         }
-        
       } catch (error) {
-        console.error('Error encountered during Google signup: ', error)
+        console.error("Error encountered during Google signup: ", error);
       }
-
     } catch (error) {
       alert(error.message);
     }

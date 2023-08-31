@@ -9,7 +9,7 @@ const Register = ({ existingUser }) => {
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
- 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -23,14 +23,19 @@ const Register = ({ existingUser }) => {
         if (user) {
           const db = firebase.firestore();
           const userRef = db.collection("users").doc(user.uid);
-          await userRef.set({
-            firstTimeLoggedIn: false,
-            email: user.email,
-            name: user.displayName,
-            document_id: user.uid,
-          });
+          const userDoc = await userRef.get();
 
-          console.log("User document created upon signup");
+          if (!userDoc.exists) {
+            await userRef.set({
+              firstTimeLoggedIn: false,
+              email: user.email,
+              name: user.displayName,
+              document_id: user.uid,
+            });
+            console.log("User document created upon signup");
+          } else {
+            console.log("User document alreadt exists");
+          }
         }
       } catch (error) {
         console.error("Error encountered during signup: ", error);
@@ -51,27 +56,30 @@ const Register = ({ existingUser }) => {
   const handleSignUpWithGoogle = async () => {
     try {
       await FirebaseAuthService.loginWithGoogle();
-
       try {
         const user = firebase.auth().currentUser;
         if (user) {
           const db = firebase.firestore();
           const userRef = db.collection("users").doc(user.uid);
-          await userRef.set({
-            firstTimeLoggedIn: false,
-            email: user.email,
-            name: user.displayName,
-            document_id: user.uid,
-          });
 
-          console.log("User document created upon Google signup");
+          // NB: Check if user doc already exists
+          const userDoc = await userRef.get();
+          if (!userDoc.exists) {
+            // NB: set data only on first login
+            await userRef.set({
+              firstTimeLoggedIn: false,
+              email: user.email,
+              name: user.displayName,
+              document_id: user.uid,
+            });
+            console.log("User document created upon Google signup");
+          } else {
+            console.log("User document already exists");
+          }
         }
-        
       } catch (error) {
-        console.error('Error encountered during Google signup: ', error)
+        console.error("Error encountered during Google signup: ", error);
       }
-      alert("Successfully created an account.");
-      navigate("/login");
     } catch (error) {
       alert(error.message);
     }
