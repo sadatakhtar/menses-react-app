@@ -3,7 +3,7 @@ import "../../styles/AddCycleDetailsForm.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom'
 import { getUserEmail, setPurityCycleDays } from "../../features/usersJourney/UserSlice";
-import firebase from "../../FirebaseConfig";
+// import firebase from "../../FirebaseConfig";
 
 const AddCycleDetailsForm = () => {
   const [name, setName] = useState("");
