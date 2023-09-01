@@ -40,7 +40,7 @@ const WelcomePage = ({user}) => {
     }
     
   }
-  console.log("db value of firstTime ===>", isFirstTime);
+  console.log("db value of isfirstTime ===>", isFirstTime);
   return (
     <>
       <div className="confirmation-container">

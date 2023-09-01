@@ -27,10 +27,11 @@ const Register = ({ existingUser }) => {
 
           if (!userDoc.exists) {
             await userRef.set({
-              firstTimeLoggedIn: false,
+              firstTimeLoggedIn: true,
               email: user.email,
               name: user.displayName,
               document_id: user.uid,
+              user_registered_date: new Date(),
             });
             console.log("User document created upon signup");
           } else {
@@ -43,6 +44,7 @@ const Register = ({ existingUser }) => {
 
       setEmail("");
       setPassword("");
+      // TODO: redirect to seperate login page when developed ('/login')
       navigate("/");
     } catch (error) {
       alert(error.message);
