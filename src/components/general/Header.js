@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 const Header = ({ existingUser }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
- 
+
   const dispatch = useDispatch();
   const userEmailRedux = useSelector(getUserEmail);
 
@@ -39,10 +39,11 @@ const Header = ({ existingUser }) => {
           if (!userDoc.exists) {
             // NB: set data only on first login
             await userRef.set({
-              firstTimeLoggedIn: false,
+              firstTimeLoggedIn: true,
               email: user.email,
               name: user.displayName,
               document_id: user.uid,
+              user_registered_date: new Date(),
             });
             console.log("User document created upon Google signup");
             // navigate("/");
@@ -56,7 +57,6 @@ const Header = ({ existingUser }) => {
     } catch (error) {
       alert(error.message);
     }
-   
   };
 
   const handleSubmit = async (e) => {
@@ -70,7 +70,7 @@ const Header = ({ existingUser }) => {
       // const data = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
       // console.log('data ====>', data)
       // TODO: add logic here if firstTimeLoggedIn => ....
-      
+
       setEmail("");
       setPassword("");
       // navigate('/contact')

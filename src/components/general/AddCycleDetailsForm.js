@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "../../styles/AddCycleDetailsForm.css";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom'
-import { getUserEmail } from "../../features/usersJourney/UserSlice";
+import { getUserEmail, setPurityCycleDays } from "../../features/usersJourney/UserSlice";
 import firebase from "../../FirebaseConfig";
 
 const AddCycleDetailsForm = () => {
@@ -10,46 +10,50 @@ const AddCycleDetailsForm = () => {
   const [age, setAge] = useState("");
   const [cycleStartDate, setCycleStartDate] = useState("");
   const [cycleEndDate, setCycleEndDate] = useState("");
+  const [purityDays, setPurityDays] = useState(0);
 
   const userEmailRedux = useSelector(getUserEmail);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   console.log("========> redux value:", userEmailRedux);
   const handleSubmitForm = async (e) => {
     e.preventDefault();
 
-    const user = firebase.auth().currentUser;
-    const db = firebase.firestore();
+    dispatch(setPurityCycleDays(purityDays));
+    navigate('/confirm-details')
 
-    try {
-      const cycleDetailsRef = await db
-        .collection("cycle_details")
-        .doc(user.uid);
-      cycleDetailsRef.set({
-        name: name,
-        age: age,
-        cycle_start_date: cycleStartDate,
-        cycle_end_date: cycleEndDate,
-        // userRef: db.collection('users').doc('user_id'),
-        document_id: user.uid,
-        account_email: userEmailRedux,
-        details_submitted_date: new Date(),
-      });
-      console.log("Successfully added data to db");
-      navigate('/confirmation')
-      // alert(`Details added to DB successfully`);
+    // const user = firebase.auth().currentUser;
+    // const db = firebase.firestore();
+
+    // try {
+    //   const cycleDetailsRef = await db
+    //     .collection("cycle_details")
+    //     .doc(user.uid);
+    //   cycleDetailsRef.set({
+    //     name: name,
+    //     age: age,
+    //     cycle_start_date: cycleStartDate,
+    //     cycle_end_date: cycleEndDate,
+    //     purity_days_between_cycles: purityDays,
+    //     document_id: user.uid,
+    //     account_email: userEmailRedux,
+    //     details_submitted_date: new Date(),
+    //   });
+    //   console.log("Successfully added data to db");
+    //   navigate('/confirm-details')
 
 
-      // TODO: add redirection here
-    } catch (error) {
-      console.error("DB entry failed", error);
-    }
+    //   // TODO: add redirection here
+    // } catch (error) {
+    //   console.error("DB entry failed", error);
+    // }
   };
 
   const pageModel = (
     <div className="container-lg">
       <form onSubmit={handleSubmitForm} className="mb-5 detailForm">
-        <h3 className="mt-5">Details</h3>
+        <h3 className="mt-5">Established Cycle</h3>
         <label htmlFor="floatingInput">
           Name:
           <input
@@ -93,6 +97,18 @@ const AddCycleDetailsForm = () => {
             onChange={(e) => setCycleEndDate(e.target.value)}
             className="form-control mt-2"
             id="floatCycleEndDate"
+            required
+          />
+        </label>
+
+        <label htmlFor="floatPurityDays">
+          Purity days between cycles:
+          <input
+            type="number"
+            value={purityDays}
+            onChange={(e) => setPurityDays(e.target.value)}
+            className="form-control mt-2"
+            id="floatPurityDays"
             required
           />
         </label>

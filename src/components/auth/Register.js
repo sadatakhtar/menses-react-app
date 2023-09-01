@@ -69,10 +69,11 @@ const Register = ({ existingUser }) => {
           if (!userDoc.exists) {
             // NB: set data only on first login
             await userRef.set({
-              firstTimeLoggedIn: false,
+              firstTimeLoggedIn: true,
               email: user.email,
               name: user.displayName,
               document_id: user.uid,
+              user_registered_date: new Date(),
             });
             console.log("User document created upon Google signup");
             navigate("/");

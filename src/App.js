@@ -13,6 +13,7 @@ import ElderlyCyclePage from "./pages/ElderlyCyclePage";
 import ConfirmationPage from "./pages/ConfirmationPage";
 import SecondPage from "./pages/SecondPage";
 import FirstTimeMenuPage from "./pages/FirstTimeMenuPage";
+import ConfirmEstablishedDetailsPage from "./pages/ConfirmEstablishedDetailsPage";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -35,27 +36,30 @@ const App = () => {
   };
   console.log(`user fron App.js --> ${user?.email}`);
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <FirstPage
-            user={user}
-            handleAddCycleDetails={handleAddCycleDetails}
-          />
-        }
-      />
-      <Route path="/login" element={<SigninPage />} />
-      <Route path="/register" element={<RegisterPage />} />
-      <Route path="/contact" element={<ContactPage />} />
-      <Route path="/established-entry" element={<EstablishedCyclePage />} />
-      <Route path="/new-entry" element={<NewCyclePage />} />
-      <Route path="/confused-entry" element={<ConfusedCyclePage />} />
-      <Route path="/elderly-entry" element={<ElderlyCyclePage />} />
-      <Route path="/confirmation" element={<ConfirmationPage />} />
-      <Route path="/second-page" element={<SecondPage />} />
-      <Route path="/first-time" element={<FirstTimeMenuPage user={user} />} />
-    </Routes>
+    <>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <FirstPage
+              user={user}
+              handleAddCycleDetails={handleAddCycleDetails}
+            />
+          }
+        />
+        <Route path="/login" element={<SigninPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/established-entry" element={<EstablishedCyclePage />} />
+        <Route path="/new-entry" element={<NewCyclePage />} />
+        <Route path="/confused-entry" element={<ConfusedCyclePage />} />
+        <Route path="/elderly-entry" element={<ElderlyCyclePage />} />
+        <Route path="/confirmation" element={<ConfirmationPage />} />
+        <Route path="/second-page" element={<SecondPage />} />
+        <Route path="/first-time" element={<FirstTimeMenuPage user={user} />} />c
+        <Route path="/confirm-details" element={<ConfirmEstablishedDetailsPage />} />
+      </Routes>
+    </>
   );
 };
 
