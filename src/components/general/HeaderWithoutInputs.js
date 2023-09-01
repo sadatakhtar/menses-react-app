@@ -1,8 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../../styles/HeaderWithoutInputs.css";
+import LoggedIn from "./LoggedIn";
+import firebase from '../../FirebaseConfig'
 
 const HeaderWithoutInputs = () => {
+  const user = firebase.auth().currentUser;
   return (
     <div>
       <nav className="navbar navbar-expand-lg bg-primary">
@@ -49,7 +52,10 @@ const HeaderWithoutInputs = () => {
                 </Link>
               </li>
             </ul>
-            <span className="navbar-text"></span>
+            <span className="navbar-text">
+              {user ? (<LoggedIn />) : ''}
+              
+            </span>
           </div>
         </div>
       </nav>

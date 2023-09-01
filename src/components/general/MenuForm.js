@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import "../../styles/MenuForm.css";
 import { useNavigate } from "react-router-dom";
+// import firebase from '../../FirebaseConfig'
 
 const MenuForm = ({ user }) => {
   const [selectOption, setSelectOption] = useState("");
+  // const user = firebase.auth();
 
   const navigate = useNavigate();
 
@@ -34,7 +36,7 @@ const MenuForm = ({ user }) => {
           <p>
             Hi{" "}
             <span style={{ fontWeight: "400", color: "black" }}>
-              {user.displayName}
+              {user?.displayName}
             </span>
             ,
           </p>

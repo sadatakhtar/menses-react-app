@@ -12,6 +12,7 @@ import ConfusedCyclePage from "./pages/ConfusedCyclePage";
 import ElderlyCyclePage from "./pages/ElderlyCyclePage";
 import ConfirmationPage from "./pages/ConfirmationPage";
 import SecondPage from "./pages/SecondPage";
+import FirstTimeMenuPage from "./pages/FirstTimeMenuPage";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -25,6 +26,7 @@ const App = () => {
       );
 
       // TODO: fetch new cycle details from firestore
+      // (test if this is the best place to make this call?)
 
       alert(`Successfully added cycle details with ID = ${response.id}`);
     } catch (error) {
@@ -52,6 +54,7 @@ const App = () => {
       <Route path="/elderly-entry" element={<ElderlyCyclePage />} />
       <Route path="/confirmation" element={<ConfirmationPage />} />
       <Route path="/second-page" element={<SecondPage />} />
+      <Route path="/first-time" element={<FirstTimeMenuPage user={user} />} />
     </Routes>
   );
 };

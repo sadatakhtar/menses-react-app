@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/general/Footer";
 import "../styles/WelcomePage.css";
-import { getUserEmail } from "../features/usersJourney/UserSlice";
-import { useSelector } from "react-redux";
+// import { getUserEmail } from "../features/usersJourney/UserSlice";
+// import { useSelector } from "react-redux";
 import firebase from "../FirebaseConfig";
 
-const WelcomePage = () => {
-    const [isFirstTime, setIsFirstTime] = useState(false);
-  const userEmailRedux = useSelector(getUserEmail);
+const WelcomePage = ({user}) => {
+  const [isFirstTime, setIsFirstTime] = useState(false);
+  // const userEmailRedux = useSelector(getUserEmail);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,22 +17,30 @@ const WelcomePage = () => {
         const db = firebase.firestore();
         const snapshot = await db
           .collection("users")
-          .where("email", "==", userEmailRedux)
+          .where("email", "==", user?.email)
           .get();
         const data = snapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
         console.log("data ====>", data);
-       setIsFirstTime(data[0].firstTimeLoggedIn)
+        setIsFirstTime(data[0].firstTimeLoggedIn);
       } catch (error) {
-        console.error(error)
+        console.error(error);
       }
     }
     fetchData();
-  }, [userEmailRedux]);
+  }, [user]);
 
-  console.log('db value of firstTime ===>', isFirstTime)
+  const handleNextBtn = () => {
+    if(isFirstTime){
+      navigate("/first-time")
+    } else {
+      navigate("/second-page")
+    }
+    
+  }
+  console.log("db value of firstTime ===>", isFirstTime);
   return (
     <>
       <div className="confirmation-container">
@@ -42,7 +50,7 @@ const WelcomePage = () => {
         </p>
         <button
           className="btn btn-primary mt-5"
-          onClick={() => navigate("/second-page")}
+          onClick={handleNextBtn}
         >
           Next
         </button>

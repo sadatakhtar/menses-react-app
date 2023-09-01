@@ -1,16 +1,13 @@
 .container-lg {
-    border: 1px black solid;
-    display: flex;
-    justify-content: center;
-    width: 30%;
-    margin-top: 20px;
-    background-color: aliceblue;
-    border-radius: 6px;
-
+  border: 1px black solid;
+  display: flex;
+  justify-content: center;
+  width: 30%;
+  margin-top: 20px;
+  background-color: aliceblue;
+  border-radius: 6px;
 }
 form {
-    display: flex;
-    flex-direction: column;
-    
-   
+  display: flex;
+  flex-direction: column;
 }
