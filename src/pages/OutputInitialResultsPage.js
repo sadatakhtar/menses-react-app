@@ -34,7 +34,8 @@ const OutputInitialResultsPage = () => {
   );
   console.log("ncsd", nextCycleStartDate);
 
-  const nextCycleStartDateToString = convertJsDateObjectToString(nextCycleStartDate)
+  const nextCycleStartDateToString =
+    convertJsDateObjectToString(nextCycleStartDate);
 
   return (
     <>
@@ -45,11 +46,17 @@ const OutputInitialResultsPage = () => {
         <form>
           <h2>Next Cycle Information</h2>
           <p>Results are calculated based on previously submitted data</p>
-          <label>Next estimated cycle start date: {nextCycleStartDateToString }</label>
+          <label>
+            Next estimated cycle start date:{" "}
+            <span style={{ color: 'green', marginLeft: '30px'}}>{nextCycleStartDateToString}</span>
+          </label>
+        
           <label>Next estimated cycle end date:</label>
 
-          <label>Previous cycle duration: {diffInDaysParsed}</label>
-          <label>Next cycle duration:</label>
+          <label>Previous cycle duration: 
+          <span style={{ color: 'green', marginLeft: '160px'}}>{diffInDaysParsed}</span>
+          </label>
+          <label>Next cycle expected duration:</label>
         </form>
       </div>
       <Footer />
