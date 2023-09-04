@@ -33,7 +33,6 @@ const ConfirmEstablishedDetailsPage = () => {
 
   const handleSubmitForm = async (e) => {
     e.preventDefault();
-
     const user = firebase.auth().currentUser;
     const db = firebase.firestore();
 
@@ -41,6 +40,8 @@ const ConfirmEstablishedDetailsPage = () => {
       const cycleDetailsRef = await db
         .collection("cycle_details")
         .doc(user.uid);
+      const userRef = await db.collection('users').doc(user.uid);
+
       cycleDetailsRef.set({
         name: userNameRedux,
         age: userAgeRedux,
@@ -52,7 +53,10 @@ const ConfirmEstablishedDetailsPage = () => {
         details_submitted_date: new Date(),
       });
 
-      // TODO: make DB call and change 'firstTimeLoggedIn to false
+      userRef.update({
+        firstTimeLoggedIn: false
+      })
+      console.log('Changed firsttimeloggedin to false')
       console.log("Successfully added data to db");
       navigate("/confirmation");
 
