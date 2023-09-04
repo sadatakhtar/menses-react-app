@@ -1,8 +1,15 @@
 import React, { useState } from "react";
 import "../../styles/AddCycleDetailsForm.css";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from 'react-router-dom'
-import { getUserEmail, setPurityCycleDays } from "../../features/usersJourney/UserSlice";
+import { useNavigate } from "react-router-dom";
+import {
+  getUserEmail,
+  setPurityCycleDays,
+  setUserName,
+  setUserAge,
+  setEstablishedCycleStartDate,
+  setEstablishedCycleEndDate,
+} from "../../features/usersJourney/UserSlice";
 // import firebase from "../../FirebaseConfig";
 
 const AddCycleDetailsForm = () => {
@@ -16,38 +23,22 @@ const AddCycleDetailsForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+
   console.log("========> redux value:", userEmailRedux);
+  console.log('CS-date:', cycleStartDate)
   const handleSubmitForm = async (e) => {
     e.preventDefault();
 
+    // NB: Store in redux
     dispatch(setPurityCycleDays(purityDays));
-    navigate('/confirm-details')
+    dispatch(setUserName(name));
+    dispatch(setUserAge(age));
+    dispatch(setEstablishedCycleStartDate(cycleStartDate));
+    dispatch(setEstablishedCycleEndDate(cycleEndDate))
 
-    // const user = firebase.auth().currentUser;
-    // const db = firebase.firestore();
+    navigate("/confirm-details");
 
-    // try {
-    //   const cycleDetailsRef = await db
-    //     .collection("cycle_details")
-    //     .doc(user.uid);
-    //   cycleDetailsRef.set({
-    //     name: name,
-    //     age: age,
-    //     cycle_start_date: cycleStartDate,
-    //     cycle_end_date: cycleEndDate,
-    //     purity_days_between_cycles: purityDays,
-    //     document_id: user.uid,
-    //     account_email: userEmailRedux,
-    //     details_submitted_date: new Date(),
-    //   });
-    //   console.log("Successfully added data to db");
-    //   navigate('/confirm-details')
-
-
-    //   // TODO: add redirection here
-    // } catch (error) {
-    //   console.error("DB entry failed", error);
-    // }
+   
   };
 
   const pageModel = (
@@ -113,7 +104,7 @@ const AddCycleDetailsForm = () => {
           />
         </label>
         <button type="submit" className="btn btn-primary mt-3">
-          Submit
+          Next
         </button>
       </form>
     </div>

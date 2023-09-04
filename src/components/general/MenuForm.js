@@ -32,7 +32,7 @@ const MenuForm = ({ user }) => {
     <div className="menu-container">
       <h2>Menu</h2>
       <p>
-        {user.displayName ? (
+        {user?.displayName ? (
           <p>
             Hi{" "}
             <span style={{ fontWeight: "400", color: "black" }}>
