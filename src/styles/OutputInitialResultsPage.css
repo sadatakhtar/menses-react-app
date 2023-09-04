@@ -1,0 +1,26 @@
+.results-container {
+  border: 1px solid black;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; */
+  width: 30%;
+  margin: 20px;
+  background-color: aliceblue;
+  padding: 20px;
+  border-radius: 6px;
+}
+
+p {
+  font-weight: 300;
+  font-size: medium;
+}
+
+h2 {
+    font-weight: 400;
+    border: 1px solid black;
+    border-radius: 6px;
+    padding: 8px;
+    background-color: #0d6efd;
+    color: white;
+}

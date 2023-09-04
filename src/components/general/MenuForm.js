@@ -31,7 +31,7 @@ const MenuForm = ({ user }) => {
   return (
     <div className="menu-container">
       <h2>Menu</h2>
-      <p>
+      <div>
         {user?.displayName ? (
           <p>
             Hi{" "}
@@ -45,7 +45,7 @@ const MenuForm = ({ user }) => {
             Hi <span style={{ fontWeight: "400", color: "black" }}>User</span>
           </p>
         )}
-      </p>
+      </div>
       <h5>Please select from the following options:</h5>
 
       <hr />

@@ -26,7 +26,7 @@ const WelcomePage = ({user}) => {
         console.log("data ====>", data);
         setIsFirstTime(data[0].firstTimeLoggedIn);
       } catch (error) {
-        console.error(error);
+        console.error('Failed to fetch data from DB!', error);
       }
     }
     fetchData();
