@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "../../styles/HeaderWithoutInputs.css";
 import LoggedIn from "./LoggedIn";
 import firebase from '../../FirebaseConfig'
+import { RingLoader } from "react-spinners";
 
 const HeaderWithoutInputs = () => {
   const user = firebase.auth().currentUser;
@@ -11,6 +12,7 @@ const HeaderWithoutInputs = () => {
       <nav className="navbar navbar-expand-lg bg-primary">
         <div className="container-fluid">
           <h1>CycleSync</h1>
+          <RingLoader color="#fafefe" />
           <button
             className="navbar-toggler"
             type="button"

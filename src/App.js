@@ -28,7 +28,6 @@ const App = () => {
       );
 
       // TODO: fetch new cycle details from firestore
-      // (test if this is the best place to make this call?)
 
       alert(`Successfully added cycle details with ID = ${response.id}`);
     } catch (error) {

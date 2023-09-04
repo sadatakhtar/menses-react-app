@@ -8,6 +8,7 @@ import {
 } from "../../features/usersJourney/UserSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { RingLoader } from "react-spinners";
 
 const Header = ({ existingUser }) => {
   const [email, setEmail] = useState("");
@@ -98,6 +99,7 @@ const Header = ({ existingUser }) => {
         <h1>
           <span>C</span>ycle<span>S</span>ync
         </h1>
+        <RingLoader color="#fafefe" />
         <button
           className="navbar-toggler"
           type="button"
