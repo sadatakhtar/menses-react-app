@@ -1,4 +1,5 @@
 import React from "react";
+import '../styles/FirstPage.css'
 import Header from "../components/general/Header";
 import MainPage from "./MainPage";
 import WelcomePage from "./WelcomePage";

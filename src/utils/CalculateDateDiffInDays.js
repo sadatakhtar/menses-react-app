@@ -1,17 +1,26 @@
-import { differenceInDays, parseISO, addDays, format } from "date-fns";
+import { differenceInDays, parseISO, addDays, format, isValid } from "date-fns";
 
 export const calculatStringDateDiffInDays = (startDate, endDate) => {
   const startDateParsed = parseISO(startDate);
   const endDateParsed = parseISO(endDate);
 
-  return differenceInDays(startDateParsed, endDateParsed);
+  if (isValid(startDateParsed) && isValid(endDateParsed)) {
+    return differenceInDays(startDateParsed, endDateParsed);
+  } else {
+    console.error("Invalid dates: ", startDateParsed, endDateParsed);
+  }
 };
 
 export const calculateNextCycleStartDate = (previousEndDate, purityDays) => {
-  const previousEndDateParsed = parseISO(previousEndDate)
-  return addDays(previousEndDateParsed, purityDays)
-}
+  const previousEndDateParsed = parseISO(previousEndDate);
+
+  if (isValid(previousEndDateParsed)) {
+    return addDays(previousEndDateParsed, purityDays);
+  } else {
+    console.error("Invalid date:", previousEndDateParsed);
+  }
+};
 
 export const convertJsDateObjectToString = (parsedDate) => {
-  return format(parsedDate, 'yyyy-MM-dd')
-}
+  return format(parsedDate, "yyyy-MM-dd");
+};

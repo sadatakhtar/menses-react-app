@@ -12,8 +12,8 @@ const ConfirmationPage = () => {
       <div className="confirmation-container">
         <h1>Thank you!</h1>
         <p>Your details have been successfully submitted.</p>
-        <button className="btn btn-primary mt-5" onClick={() => navigate("/initial-results")}>
-          Continue to results
+        <button className="btn btn-primary mt-5" onClick={() => navigate("/dashboard")}>
+          Continue to dashboard
         </button>
       </div>
       <Footer />

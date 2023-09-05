@@ -36,7 +36,7 @@ const WelcomePage = ({user}) => {
     if(isFirstTime){
       navigate("/first-time")
     } else {
-      navigate("/second-page")
+      navigate("/dashboard")
     }
     
   }
