@@ -97,9 +97,9 @@ const Header = ({ existingUser }) => {
     <nav className="navbar navbar-expand-lg bg-primary">
       <div className="container-fluid">
         <h1>
-          <span>C</span>ycle<span>S</span>ync
+          <span style={{ color: '#c5b9ad'}}>C</span>ycle<span>S</span>ync
         </h1>
-        <RingLoader color="#fafefe" />
+        <RingLoader color="#fafefe" size={60}/>
         <button
           className="navbar-toggler"
           type="button"

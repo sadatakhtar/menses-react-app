@@ -24,3 +24,22 @@ h2 {
     background-color: #0d6efd;
     color: white;
 }
+.label-container {
+  border: 1px solid black;
+  border-radius: 6px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.label-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  
+}
+span {
+  color: green;
+}

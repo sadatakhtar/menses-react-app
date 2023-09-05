@@ -1,50 +1,48 @@
 .btn-container {
-    display: flex;
-    justify-content: space-between;
-    /* margin: 2px; */
-    
+  display: flex;
+  justify-content: space-between;
+  /* margin: 2px; */
 }
 
 .btn-container > button {
-    border: 1px black solid;
+  border: 1px black solid;
 }
 .signin-container {
-    width: 400px;
-    margin: 2px;
-   
+  width: 400px;
+  margin: 2px;
 }
 
 .login-form-inputs {
-    width: 230px;
-    font-size: small;
+  width: 230px;
+  font-size: small;
 }
 
 .text-style {
-    font-size: medium;
-    font-weight: 400;
-    margin: 8px;
+  font-size: medium;
+  font-weight: 400;
+  margin: 8px;
 }
 
 .welcome-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100px;
-    /* width: 600px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  /* width: 600px; */
 }
 
 ul {
-    width: 15%;
-    display: flex;
-    justify-content: space-between;
-    margin: 10px;
+  width: 15%;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
 }
 
 h1 {
-    font-size: 3rem;
-    font-weight: 400;
+  font-size: 3rem;
+  font-weight: 400;
 }
 
-span{
-    color: #c5b9ad;
+span {
+  color: #c5b9ad;
 }

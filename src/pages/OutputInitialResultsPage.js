@@ -24,7 +24,7 @@ const OutputInitialResultsPage = () => {
     cycleEndDateRedux,
     cycleStartDateRedux
   );
-  const diffInDaysParsed = Number(diffInDays);
+  const cycleDurationParsed = Number(diffInDays);
 
   // NB: calculate next cycle start date
   const purityDaysParsed = Number(purityDaysRedux);
@@ -37,26 +37,43 @@ const OutputInitialResultsPage = () => {
   const nextCycleStartDateToString =
     convertJsDateObjectToString(nextCycleStartDate);
 
+  // NB: calculate next cycle end date (new date + menses duration)
+  const nextCycleEndDate = calculateNextCycleStartDate(
+    nextCycleStartDateToString,
+    cycleDurationParsed
+  );
+  console.log("ncENDDate:", nextCycleEndDate);
+
+  const nextCycleEndDateToString =
+    convertJsDateObjectToString(nextCycleEndDate);
+
   return (
     <>
       <HeaderWithoutInputs />
       <div className="results-container">
-        <h4>Results</h4>
-
         <form>
-          <h2>Next Cycle Information</h2>
-          <p>Results are calculated based on previously submitted data</p>
-          <label>
-            Next estimated cycle start date:{" "}
-            <span style={{ color: 'green', marginLeft: '30px'}}>{nextCycleStartDateToString}</span>
-          </label>
-        
-          <label>Next estimated cycle end date:</label>
+          <h2>Result</h2>
+          <p className="mb-2">Results are calculated based on previously submitted data</p>
+          <div className="label-container">
+            <div className="label-div">
+              <label>
+                Next estimated cycle start date:{" "}
+              </label>
+              <span>{nextCycleStartDateToString}</span>
+            </div>
 
-          <label>Previous cycle duration: 
-          <span style={{ color: 'green', marginLeft: '160px'}}>{diffInDaysParsed}</span>
-          </label>
-          <label>Next cycle expected duration:</label>
+            <div className="label-div">
+              <label>Next estimated cycle end date:</label>
+              <span>{nextCycleEndDateToString}</span>
+            </div>
+
+            <div className="label-div">
+              <label>
+                Previous cycle duration:
+              </label>
+              <span>{cycleDurationParsed} days</span>
+            </div>
+          </div>
         </form>
       </div>
       <Footer />
