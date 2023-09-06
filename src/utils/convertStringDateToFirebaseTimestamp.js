@@ -4,10 +4,9 @@ import firebase from "../FirebaseConfig";
 export const convertStringDateToFirebaseTimestamp = (string) => {
   const dateString = string;
   const dateObject = new Date(dateString);
-  if(isValid(dateObject)){
+  if (isValid(dateObject)) {
     return firebase.firestore.Timestamp.fromDate(dateObject);
   } else {
-    console.error('Invalid date object:', dateObject)
+    console.error("Invalid date object:", dateObject);
   }
-
 };

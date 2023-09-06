@@ -2,6 +2,8 @@ import React from "react";
 import "../../styles/Menu.css";
 
 const Menu = () => {
+
+    // TODO: redirecting of buttons not complete
   return (
     <div className="button-container">
       <button className="btn btn-secondary">Profile</button>

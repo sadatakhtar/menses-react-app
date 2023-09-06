@@ -2,7 +2,6 @@ import React from "react";
 import "../styles/MainPage.css";
 import { useNavigate } from 'react-router-dom'
 import Footer from "../components/general/Footer";
-// import { imageOne, imageTwo, imageThree } from "../utils/imgUrls";
 
 const MainPage = () => {
   const navigate = useNavigate();

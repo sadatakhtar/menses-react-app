@@ -40,7 +40,7 @@ const HeaderWithoutInputs = () => {
                     fontWeight: "300",
                   }}
                 >
-                  Home
+                  Dashboard
                 </Link>
               </li>
               <li className="nav-item">

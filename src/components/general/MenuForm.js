@@ -1,12 +1,9 @@
 import React, { useState } from "react";
 import "../../styles/MenuForm.css";
 import { useNavigate } from "react-router-dom";
-// import firebase from '../../FirebaseConfig'
 
 const MenuForm = ({ user }) => {
   const [selectOption, setSelectOption] = useState("");
-  // const user = firebase.auth();
-
   const navigate = useNavigate();
 
   const handleSelection = (e) => {
@@ -27,7 +24,7 @@ const MenuForm = ({ user }) => {
       navigate("/elderly-entry");
     }
   };
-  //   console.log("== user:", user);
+ 
   return (
     <div className="menu-container">
       <h2>Menu</h2>

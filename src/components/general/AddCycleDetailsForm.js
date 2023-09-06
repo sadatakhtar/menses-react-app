@@ -10,7 +10,6 @@ import {
   setEstablishedCycleStartDate,
   setEstablishedCycleEndDate,
 } from "../../features/usersJourney/UserSlice";
-// import firebase from "../../FirebaseConfig";
 
 const AddCycleDetailsForm = () => {
   const [name, setName] = useState("");

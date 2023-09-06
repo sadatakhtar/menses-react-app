@@ -65,13 +65,6 @@ const Header = ({ existingUser }) => {
 
     try {
       await FirebaseAuthService.loginUser(email, password);
-
-      // const db = firebase.firestore()
-      // const snapshot = await db.collection('users').where('document_id', '==', '').get();
-      // const data = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-      // console.log('data ====>', data)
-      // TODO: add logic here if firstTimeLoggedIn => ....
-
       setEmail("");
       setPassword("");
       // navigate('/contact')
@@ -123,7 +116,7 @@ const Header = ({ existingUser }) => {
                   fontWeight: "300",
                 }}
               >
-                Home
+                Dashboard
               </Link>
             </li>
             <li className="nav-item">

@@ -2,13 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/general/Footer";
 import "../styles/WelcomePage.css";
-// import { getUserEmail } from "../features/usersJourney/UserSlice";
-// import { useSelector } from "react-redux";
 import firebase from "../FirebaseConfig";
 
 const WelcomePage = ({user}) => {
   const [isFirstTime, setIsFirstTime] = useState(false);
-  // const userEmailRedux = useSelector(getUserEmail);
   const navigate = useNavigate();
 
   useEffect(() => {

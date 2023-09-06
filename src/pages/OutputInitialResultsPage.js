@@ -62,34 +62,6 @@ const OutputInitialResultsPage = () => {
     nextCycleStartDateToString,
   ]);
 
-  // NB: calculate duration of cycle
-  // const diffInDays = calculatStringDateDiffInDays(
-  //   cycleEndDateRedux,
-  //   cycleStartDateRedux
-  // );
-  // const cycleDurationParsed = Number(diffInDays);
-
-  // // NB: calculate next cycle start date
-  // const purityDaysParsed = Number(purityDaysRedux);
-  // const nextCycleStartDate = calculateNextCycleStartDate(
-  //   cycleEndDateRedux,
-  //   purityDaysParsed
-  // );
-  // console.log("ncsd", nextCycleStartDate);
-
-  // const nextCycleStartDateToString =
-  //   convertJsDateObjectToString(nextCycleStartDate);
-
-  // // NB: calculate next cycle end date (new date + menses duration)
-  // const nextCycleEndDate = calculateNextCycleStartDate(
-  //   nextCycleStartDateToString,
-  //   cycleDurationParsed
-  // );
-  // console.log("ncENDDate:", nextCycleEndDate);
-
-  // const nextCycleEndDateToString =
-  //   convertJsDateObjectToString(nextCycleEndDate);
-
   return (
     <>
       <HeaderWithoutInputs />
