@@ -13,7 +13,7 @@ const ConfirmationPage = () => {
         <h1>Thank you!</h1>
         <p>Your details have been successfully submitted.</p>
         <button className="btn btn-primary mt-5" onClick={() => navigate("/results")}>
-          Continue to dashboard
+          Show Result
         </button>
       </div>
       <Footer />
