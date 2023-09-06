@@ -41,8 +41,10 @@ const WelcomePage = ({user}) => {
     
   }
   console.log("db value of isfirstTime ===>", isFirstTime);
-  return (
-    <>
+
+  const pageModel = (
+    <div>
+       {!isFirstTime ? (<div>Main Dashboard</div>) : ( <>
       <div className="confirmation-container">
         <h1>Welcome</h1>
         <p style={{ textAlign: "center" }}>
@@ -56,8 +58,11 @@ const WelcomePage = ({user}) => {
         </button>
       </div>
       <Footer />
-    </>
-  );
+    </>)}
+    </div>
+   
+  )
+  return pageModel;
 };
 
 export default WelcomePage;

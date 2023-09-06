@@ -95,7 +95,7 @@ const OutputInitialResultsPage = () => {
       <HeaderWithoutInputs />
       <div className="results-container">
         <form>
-          <h2>Dashboard</h2>
+          <h2>Results</h2>
           <p className="mb-2">
             Results are calculated based on previously submitted data
           </p>
