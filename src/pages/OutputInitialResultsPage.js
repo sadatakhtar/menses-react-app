@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import "../styles/OutputInitialResultsPage.css";
 import Footer from "../components/general/Footer";
@@ -13,39 +13,82 @@ import {
   calculateNextCycleStartDate,
   convertJsDateObjectToString,
 } from "../utils/CalculateDateDiffInDays";
+import Menu from "../components/general/Menu";
+import { format } from 'date-fns'
 
 const OutputInitialResultsPage = () => {
   const cycleStartDateRedux = useSelector(getEstablishedCycleStartDate);
   const cycleEndDateRedux = useSelector(getEstablishedCycleEndDate);
   const purityDaysRedux = useSelector(getPurityCycleDays);
 
-  // NB: calculate duration of cycle
-  const diffInDays = calculatStringDateDiffInDays(
+  // State to store the calculated values
+  const [cycleDurationParsed, setCycleDurationParsed] = useState(0);
+  const [nextCycleStartDateToString, setNextCycleStartDateToString] =
+    useState("");
+  const [nextCycleEndDateToString, setNextCycleEndDateToString] = useState("");
+
+  useEffect(() => {
+    try {
+      // NB: calculate duration of cycle
+      const diffInDays = calculatStringDateDiffInDays(
+        cycleEndDateRedux,
+        cycleStartDateRedux
+      );
+      setCycleDurationParsed(Number(diffInDays));
+
+      // NB: calculate next cycle start date
+      const purityDaysParsed = Number(purityDaysRedux);
+      const nextStartDate = calculateNextCycleStartDate(
+        cycleEndDateRedux,
+        purityDaysParsed
+      );
+      setNextCycleStartDateToString(convertJsDateObjectToString(nextStartDate));
+
+      // NB: calculate next cycle end date
+      const nextEndDate = calculateNextCycleStartDate(
+        nextCycleStartDateToString,
+        cycleDurationParsed
+      );
+      // setNextCycleEndDateToString(convertJsDateObjectToString(nextEndDate));
+      setNextCycleEndDateToString(format(nextEndDate, 'yyyy-MM-dd'))
+    } catch (error) {
+      console.error(error);
+    }
+  }, [
+    cycleStartDateRedux,
     cycleEndDateRedux,
-    cycleStartDateRedux
-  );
-  const cycleDurationParsed = Number(diffInDays);
-
-  // NB: calculate next cycle start date
-  const purityDaysParsed = Number(purityDaysRedux);
-  const nextCycleStartDate = calculateNextCycleStartDate(
-    cycleEndDateRedux,
-    purityDaysParsed
-  );
-  console.log("ncsd", nextCycleStartDate);
-
-  const nextCycleStartDateToString =
-    convertJsDateObjectToString(nextCycleStartDate);
-
-  // NB: calculate next cycle end date (new date + menses duration)
-  const nextCycleEndDate = calculateNextCycleStartDate(
+    purityDaysRedux,
+    cycleDurationParsed,
     nextCycleStartDateToString,
-    cycleDurationParsed
-  );
-  console.log("ncENDDate:", nextCycleEndDate);
+  ]);
 
-  const nextCycleEndDateToString =
-    convertJsDateObjectToString(nextCycleEndDate);
+  // NB: calculate duration of cycle
+  // const diffInDays = calculatStringDateDiffInDays(
+  //   cycleEndDateRedux,
+  //   cycleStartDateRedux
+  // );
+  // const cycleDurationParsed = Number(diffInDays);
+
+  // // NB: calculate next cycle start date
+  // const purityDaysParsed = Number(purityDaysRedux);
+  // const nextCycleStartDate = calculateNextCycleStartDate(
+  //   cycleEndDateRedux,
+  //   purityDaysParsed
+  // );
+  // console.log("ncsd", nextCycleStartDate);
+
+  // const nextCycleStartDateToString =
+  //   convertJsDateObjectToString(nextCycleStartDate);
+
+  // // NB: calculate next cycle end date (new date + menses duration)
+  // const nextCycleEndDate = calculateNextCycleStartDate(
+  //   nextCycleStartDateToString,
+  //   cycleDurationParsed
+  // );
+  // console.log("ncENDDate:", nextCycleEndDate);
+
+  // const nextCycleEndDateToString =
+  //   convertJsDateObjectToString(nextCycleEndDate);
 
   return (
     <>
@@ -53,12 +96,20 @@ const OutputInitialResultsPage = () => {
       <div className="results-container">
         <form>
           <h2>Dashboard</h2>
-          <p className="mb-2">Results are calculated based on previously submitted data</p>
+          <p className="mb-2">
+            Results are calculated based on previously submitted data
+          </p>
           <div className="label-container">
             <div className="label-div">
-              <label>
-                Next estimated cycle start date:{" "}
-              </label>
+              <label>Previous cycle start date: </label>
+              <span style={{ color: "grey" }}>{cycleStartDateRedux}</span>
+            </div>
+            <div className="label-div">
+              <label>Previous cycle end date: </label>
+              <span style={{ color: "grey" }}>{cycleEndDateRedux}</span>
+            </div>
+            <div className="label-div">
+              <label>Next estimated cycle start date: </label>
               <span>{nextCycleStartDateToString}</span>
             </div>
 
@@ -68,14 +119,13 @@ const OutputInitialResultsPage = () => {
             </div>
 
             <div className="label-div">
-              <label>
-                Previous cycle duration:
-              </label>
+              <label>Previous cycle duration:</label>
               <span>{cycleDurationParsed} days</span>
             </div>
           </div>
         </form>
       </div>
+      <Menu />
       <Footer />
     </>
   );

@@ -22,5 +22,10 @@ export const calculateNextCycleStartDate = (previousEndDate, purityDays) => {
 };
 
 export const convertJsDateObjectToString = (parsedDate) => {
-  return format(parsedDate, "yyyy-MM-dd");
+  if(parsedDate){
+    return format(parsedDate, "yyyy-MM-dd");
+  }else {
+    console.error('Invalid date:', parsedDate)
+  }
+ 
 };
