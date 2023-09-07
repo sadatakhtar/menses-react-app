@@ -1,4 +1,5 @@
 import React from "react";
+import "../styles/ConfirmEstablishedDetailsPage.css";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/general/Footer";
 import { useSelector } from "react-redux";
@@ -40,7 +41,7 @@ const ConfirmEstablishedDetailsPage = () => {
       const cycleDetailsRef = await db
         .collection("cycle_details")
         .doc(user.uid);
-      const userRef = await db.collection('users').doc(user.uid);
+      const userRef = await db.collection("users").doc(user.uid);
 
       cycleDetailsRef.set({
         name: userNameRedux,
@@ -54,9 +55,9 @@ const ConfirmEstablishedDetailsPage = () => {
       });
 
       userRef.update({
-        firstTimeLoggedIn: false
-      })
-      console.log('Changed firsttimeloggedin to false')
+        firstTimeLoggedIn: false,
+      });
+      console.log("Changed firsttimeloggedin to false");
       console.log("Successfully added data to db");
       navigate("/confirmation");
 
@@ -70,21 +71,34 @@ const ConfirmEstablishedDetailsPage = () => {
       <HeaderWithoutInputs />
       <div className="container-lg">
         <form onSubmit={handleSubmitForm} className="mb-5 detailForm">
-          <h3 className="mt-5">Confirm established cycle details</h3>
-          <label htmlFor="floatingInput">Name: {userNameRedux}</label>
-          <label htmlFor="floatingAge">Age: {userAgeRedux}</label>
+          <h3 className="mt-5">Confirm Cycle Details</h3>
+          <h5 className="mt-5 sub-heading">Personal details</h5>
+          <div className="label-div">
+            <label htmlFor="floatingInput">Name:</label>
+            <span style={{ color: "green" }}>{userNameRedux}</span>
+          </div>
 
-          <h5 className="mt-5">Cycle Information</h5>
-          <label htmlFor="floatCycleStartDate">
-            Start date: {estCycleStartDateRedux}
-          </label>
-          <label htmlFor="floatCycleEndDate">
-            End date: {estCycleEndDateRedux}
-          </label>
+          <div className="label-div">
+            <label htmlFor="floatingAge">Age: </label>
+            <span style={{ color: "green" }}>{userAgeRedux}</span>
+          </div>
 
-          <label htmlFor="floatPurityDays">
-            Purity days between cycles: {purityDaysRedux}
-          </label>
+          <h5 className="mt-5 sub-heading">Cycle Information</h5>
+          <div className="label-div">
+            <label htmlFor="floatCycleStartDate">Start date:</label>
+            <span style={{ color: "green" }}>{estCycleStartDateRedux}</span>
+          </div>
+
+          <div className="label-div">
+            <label htmlFor="floatCycleEndDate">End date:</label>
+            <span style={{ color: "green" }}>{estCycleEndDateRedux}</span>
+          </div>
+
+          <div className="label-div">
+            <label htmlFor="floatPurityDays">Purity days between cycles:</label>
+            <span style={{ color: "green" }}>{purityDaysRedux}</span>
+          </div>
+
           <button type="submit" className="btn btn-primary mt-3">
             Submit
           </button>

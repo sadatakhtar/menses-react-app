@@ -1,0 +1,19 @@
+.label-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+  }
+
+  .detailForm {
+    padding: 20px;
+  }
+
+  .sub-heading {
+    padding-left: 8px;
+    background-color: #c5b9ad;
+    border-radius: 6px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+  }
