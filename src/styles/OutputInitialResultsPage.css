@@ -17,12 +17,12 @@ p {
 }
 
 h2 {
-    font-weight: 400;
-    border: 1px solid black;
-    border-radius: 6px;
-    padding: 8px;
-    background-color: #0d6efd;
-    color: white;
+  font-weight: 400;
+  border: 1px solid black;
+  border-radius: 6px;
+  padding: 8px;
+  background-color: #0d6efd;
+  color: white;
 }
 .label-container {
   border: 1px solid black;
@@ -38,8 +38,4 @@ h2 {
   justify-content: space-between;
   align-items: center;
   padding: 5px;
-  
-}
-span {
-  color: green;
 }

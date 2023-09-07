@@ -60,6 +60,7 @@ const Header = ({ existingUser }) => {
     }
   };
 
+  const user = firebase.auth().currentUser;
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -107,7 +108,7 @@ const Header = ({ existingUser }) => {
         </button>
         <div className="collapse navbar-collapse" id="navbarText">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
+            {user && (<li className="nav-item">
               <Link
                 to="/"
                 style={{
@@ -118,7 +119,8 @@ const Header = ({ existingUser }) => {
               >
                 Dashboard
               </Link>
-            </li>
+            </li>)}
+            
             <li className="nav-item">
               <Link
                 to="/register"

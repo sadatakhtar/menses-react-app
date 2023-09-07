@@ -14,7 +14,7 @@ import {
   convertJsDateObjectToString,
 } from "../utils/CalculateDateDiffInDays";
 import Menu from "../components/general/Menu";
-import { format } from 'date-fns'
+import { format } from "date-fns";
 
 const OutputInitialResultsPage = () => {
   const cycleStartDateRedux = useSelector(getEstablishedCycleStartDate);
@@ -50,7 +50,7 @@ const OutputInitialResultsPage = () => {
         cycleDurationParsed
       );
       // setNextCycleEndDateToString(convertJsDateObjectToString(nextEndDate));
-      setNextCycleEndDateToString(format(nextEndDate, 'yyyy-MM-dd'))
+      setNextCycleEndDateToString(format(nextEndDate, "yyyy-MM-dd"));
     } catch (error) {
       console.error(error);
     }
@@ -82,17 +82,19 @@ const OutputInitialResultsPage = () => {
             </div>
             <div className="label-div">
               <label>Next estimated cycle start date: </label>
-              <span>{nextCycleStartDateToString}</span>
+              <span style={{ color: "green" }}>
+                {nextCycleStartDateToString}
+              </span>
             </div>
 
             <div className="label-div">
               <label>Next estimated cycle end date:</label>
-              <span>{nextCycleEndDateToString}</span>
+              <span style={{ color: "green" }}>{nextCycleEndDateToString}</span>
             </div>
 
             <div className="label-div">
               <label>Previous cycle duration:</label>
-              <span>{cycleDurationParsed} days</span>
+              <span style={{ color: "green" }}>{cycleDurationParsed} days</span>
             </div>
           </div>
         </form>
