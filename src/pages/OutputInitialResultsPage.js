@@ -64,7 +64,7 @@ const OutputInitialResultsPage = () => {
 
   return (
     <>
-      <HeaderWithoutInputs />
+      {/* <HeaderWithoutInputs /> */}
       <div className="results-container">
         <form>
           <h2>Results</h2>

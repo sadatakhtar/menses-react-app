@@ -48,10 +48,11 @@ const ConfirmEstablishedDetailsPage = () => {
         age: userAgeRedux,
         cycle_start_date: timeStampedCycleStartDate,
         cycle_end_date: timestampedCycleEndDate,
-        purity_days_between_cycles: purityDaysRedux,
+        purity_days_between_cycles: Number(purityDaysRedux),
         document_id: user.uid,
         account_email: userEmailRedux,
         details_submitted_date: new Date(),
+        cycle_status: 'unconfirmed',
       });
 
       userRef.update({
