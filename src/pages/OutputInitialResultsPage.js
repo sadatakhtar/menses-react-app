@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import "../styles/OutputInitialResultsPage.css";
 import Footer from "../components/general/Footer";
-import HeaderWithoutInputs from "../components/general/HeaderWithoutInputs";
+// import HeaderWithoutInputs from "../components/general/HeaderWithoutInputs";
 import {
   getEstablishedCycleStartDate,
   getEstablishedCycleEndDate,
