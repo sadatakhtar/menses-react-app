@@ -11,6 +11,8 @@ const initialState = {
   userAge: 0,
   establishedCycleStartDate: null,
   establishedCycleEndDate: null,
+  nextCycleStartDate: null,
+  nextCycleEndDate: null,
 
 };
 
@@ -45,6 +47,12 @@ export const userSlice = createSlice({
     setEstablishedCycleEndDate: (state, action) => {
       state.establishedCycleEndDate = action.payload;
     },
+    setNextCycleStartDate: (state, action) => {
+      state.nextCycleStartDate = action.payload;
+    },
+    setNextCycleEndDate: (state, action) => {
+      state.nextCycleEndDate = action.payload;
+    },
   
   },
 });
@@ -59,6 +67,8 @@ export const {
   setUserAge,
   setEstablishedCycleStartDate,
   setEstablishedCycleEndDate,
+  setNextCycleStartDate,
+  setNextCycleEndDate,
   
 } = userSlice.actions;
 
@@ -72,5 +82,7 @@ export const getUserName = (state) => state.userSlice.userName;
 export const getUserAge = (state) => state.userSlice.userAge;
 export const getEstablishedCycleStartDate = (state) => state.userSlice.establishedCycleStartDate;
 export const getEstablishedCycleEndDate = (state) => state.userSlice.establishedCycleEndDate;
+export const getNextCycleStartDate = (state) => state.userSlice.nextCycleStartDate;
+export const getNextCycleEndDate = (state) => state.userSlice.nextCycleEndDate;
 
 export default userSlice.reducer;

@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import "../styles/OutputInitialResultsPage.css";
 import Footer from "../components/general/Footer";
-// import HeaderWithoutInputs from "../components/general/HeaderWithoutInputs";
 import {
   getEstablishedCycleStartDate,
   getEstablishedCycleEndDate,
   getPurityCycleDays,
+  setNextCycleStartDate,
+  getNextCycleStartDate,
+  setNextCycleEndDate,
+  getNextCycleEndDate,
 } from "../features/usersJourney/UserSlice";
 import {
   calculatStringDateDiffInDays,
@@ -20,6 +23,10 @@ const OutputInitialResultsPage = () => {
   const cycleStartDateRedux = useSelector(getEstablishedCycleStartDate);
   const cycleEndDateRedux = useSelector(getEstablishedCycleEndDate);
   const purityDaysRedux = useSelector(getPurityCycleDays);
+  const nextCycleStartDateRedux = useSelector(getNextCycleStartDate);
+  const nextCycleEndDateRedux = useSelector(getNextCycleEndDate);
+
+  const dispatch = useDispatch();
 
   // State to store the calculated values
   const [cycleDurationParsed, setCycleDurationParsed] = useState(0);
@@ -62,12 +69,15 @@ const OutputInitialResultsPage = () => {
     nextCycleStartDateToString,
   ]);
 
+  // dispatch to redux store
+  dispatch(setNextCycleStartDate(nextCycleStartDateToString));
+  dispatch(setNextCycleEndDate(nextCycleEndDateToString));
+
   return (
     <>
-      {/* <HeaderWithoutInputs /> */}
       <div className="results-container">
         <form>
-          <h2>Results</h2>
+          <h2>Dashboard</h2>
           <p className="mb-2">
             Results are calculated based on previously submitted data
           </p>
@@ -82,14 +92,16 @@ const OutputInitialResultsPage = () => {
             </div>
             <div className="label-div">
               <label>Next estimated cycle start date: </label>
-              <span style={{ color: "green" }}>
+              {/* <span style={{ color: "green" }}>
                 {nextCycleStartDateToString}
-              </span>
+              </span> */}
+              <span style={{ color: "green" }}>{nextCycleStartDateRedux}</span>
             </div>
 
             <div className="label-div">
               <label>Next estimated cycle end date:</label>
-              <span style={{ color: "green" }}>{nextCycleEndDateToString}</span>
+              {/* <span style={{ color: "green" }}>{nextCycleEndDateToString}</span> */}
+              <span style={{ color: "green" }}>{nextCycleEndDateRedux}</span>
             </div>
 
             <div className="label-div">

@@ -12,6 +12,8 @@ import {
   getEstablishedCycleStartDate,
   getEstablishedCycleEndDate,
   getUserEmail,
+  getNextCycleStartDate,
+  getNextCycleEndDate,
 } from "../features/usersJourney/UserSlice";
 import firebase from "../FirebaseConfig";
 
@@ -22,6 +24,8 @@ const ConfirmEstablishedDetailsPage = () => {
   const estCycleStartDateRedux = useSelector(getEstablishedCycleStartDate);
   const estCycleEndDateRedux = useSelector(getEstablishedCycleEndDate);
   const userEmailRedux = useSelector(getUserEmail);
+  const nextCycleStartDateRedux = useSelector(getNextCycleStartDate);
+  const nextCycleEndDateRedux = useSelector(getNextCycleEndDate);
 
   // NB: convert string date to timestamp before submission to DB
   const timeStampedCycleStartDate = convertStringDateToFirebaseTimestamp(
@@ -29,6 +33,13 @@ const ConfirmEstablishedDetailsPage = () => {
   );
   const timestampedCycleEndDate =
     convertStringDateToFirebaseTimestamp(estCycleEndDateRedux);
+
+  const timeStampedNextCycleStartDate = convertStringDateToFirebaseTimestamp(
+    nextCycleStartDateRedux
+  );
+  const timeStampedNextCycleEndDate = convertStringDateToFirebaseTimestamp(
+    nextCycleEndDateRedux
+  );
 
   const navigate = useNavigate();
 
@@ -46,13 +57,17 @@ const ConfirmEstablishedDetailsPage = () => {
       cycleDetailsRef.set({
         name: userNameRedux,
         age: userAgeRedux,
-        cycle_start_date: timeStampedCycleStartDate,
-        cycle_end_date: timestampedCycleEndDate,
+        previous_cycle_start_date: timeStampedCycleStartDate,
+        previous_cycle_end_date: timestampedCycleEndDate,
+        current_cycle_start_date: timeStampedCycleStartDate,
+        current_cycle_end_date: timestampedCycleEndDate,
         purity_days_between_cycles: Number(purityDaysRedux),
         document_id: user.uid,
         account_email: userEmailRedux,
         details_submitted_date: new Date(),
-        cycle_status: 'unconfirmed',
+        cycle_status: "unconfirmed",
+        next_cycle_start_date: timeStampedNextCycleStartDate,
+        next_cycle_end_date: timeStampedNextCycleEndDate,
       });
 
       userRef.update({
