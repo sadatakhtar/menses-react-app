@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Footer from "../components/general/Footer";
 import "../styles/WelcomePage.css";
 import firebase from "../FirebaseConfig";
-import OutputInitialResultsPage from "./OutputInitialResultsPage";
+import DashboardPage from "./DashboardPage";
 
 const WelcomePage = ({user}) => {
   const [isFirstTime, setIsFirstTime] = useState(false);
@@ -42,7 +42,7 @@ const WelcomePage = ({user}) => {
 
   const pageModel = (
     <div>
-       {!isFirstTime ? (<OutputInitialResultsPage />) : ( <>
+       {!isFirstTime ? (<DashboardPage />) : ( <>
       <div className="confirmation-container">
         <h1>Welcome</h1>
         <p style={{ textAlign: "center" }}>

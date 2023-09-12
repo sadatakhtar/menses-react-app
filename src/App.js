@@ -54,7 +54,7 @@ const App = () => {
         <Route path="/elderly-entry" element={<ElderlyCyclePage />} />
         <Route path="/confirmation" element={<ConfirmationPage />} />
         <Route path="/second-page" element={<SecondPage />} />
-        {/* <Route path="/results" element={<OutputInitialResultsPage />} /> */}
+        <Route path="/results" element={<OutputInitialResultsPage />} />
         <Route path="/first-time" element={<FirstTimeMenuPage user={user} />} />c
         <Route path="/confirm-details" element={<ConfirmEstablishedDetailsPage />} />
         <Route path="/initial-results" element={<OutputInitialResultsPage />} />

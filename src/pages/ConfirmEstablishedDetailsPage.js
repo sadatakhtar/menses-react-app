@@ -37,10 +37,17 @@ const ConfirmEstablishedDetailsPage = () => {
   const timeStampedNextCycleStartDate = convertStringDateToFirebaseTimestamp(
     nextCycleStartDateRedux
   );
+ 
   const timeStampedNextCycleEndDate = convertStringDateToFirebaseTimestamp(
     nextCycleEndDateRedux
   );
 
+  console.log(
+    "==formatted fb timestamp:",
+    timeStampedNextCycleStartDate,
+    timeStampedNextCycleEndDate
+  );
+  console.log("confirmEDP => esCycStartDate:", estCycleStartDateRedux);
   const navigate = useNavigate();
 
   const handleSubmitForm = async (e) => {
