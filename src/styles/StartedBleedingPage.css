@@ -1,0 +1,22 @@
+.started-container {
+    border: 1px solid red;
+    display: flex;
+    justify-content:center;
+    /* align-items: center; */
+    padding: 20px;
+    height: 75vh;
+}
+
+.last-cycle {
+    border: 1px solid black;
+    padding: 20px;
+    margin-right: 10px;
+    height: 30vh;
+}
+
+.additional-details {
+    border: 1px solid black;
+    padding: 20px;
+    margin-left: 10px;
+    height: 30vh;
+}

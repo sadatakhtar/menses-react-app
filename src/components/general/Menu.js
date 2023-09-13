@@ -1,14 +1,18 @@
 import React from "react";
+import { useNavigate} from 'react-router-dom'
 import "../../styles/Menu.css";
 
 const Menu = () => {
-
-    // TODO: redirecting of buttons not complete
+  const navigate = useNavigate();
+   
+    const handleBleedBtn = () => {
+      navigate('/started-bleeding')
+    }
   return (
     <div className="button-container">
       <button className="btn btn-secondary">Ask a question</button>
-      <button className="btn btn-primary">Unexpected bleeding started</button>
-      <button className="btn btn-primary">Unexpected bleeding ended</button>
+      <button className="btn btn-primary" onClick={handleBleedBtn}>Started bleeding again</button>
+   
     </div>
   );
 };

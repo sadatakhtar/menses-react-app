@@ -15,6 +15,7 @@ import SecondPage from "./pages/SecondPage";
 import FirstTimeMenuPage from "./pages/FirstTimeMenuPage";
 import ConfirmEstablishedDetailsPage from "./pages/ConfirmEstablishedDetailsPage";
 import OutputInitialResultsPage from "./pages/OutputInitialResultsPage";
+import StartedBleedingPage from "./pages/StartedBleedingPage";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -59,6 +60,7 @@ const App = () => {
         <Route path="/confirm-details" element={<ConfirmEstablishedDetailsPage />} />
         <Route path="/initial-results" element={<OutputInitialResultsPage />} />
         <Route path="/dashboard" element={<OutputInitialResultsPage />} />
+        <Route path="/started-bleeding" element={<StartedBleedingPage />} />
       </Routes>
     </>
   );
