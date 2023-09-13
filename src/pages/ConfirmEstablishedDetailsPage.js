@@ -3,7 +3,7 @@ import "../styles/ConfirmEstablishedDetailsPage.css";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/general/Footer";
 import { useSelector } from "react-redux";
-import { convertStringDateToFirebaseTimestamp } from "../utils/convertStringDateToFirebaseTimestamp";
+// import { convertStringDateToFirebaseTimestamp } from "../utils/convertStringDateToFirebaseTimestamp";
 import HeaderWithoutInputs from "../components/general/HeaderWithoutInputs";
 import {
   getPurityCycleDays,
@@ -12,10 +12,12 @@ import {
   getEstablishedCycleStartDate,
   getEstablishedCycleEndDate,
   getUserEmail,
-  getNextCycleStartDate,
+  // getNextCycleStartDate,
   getNextCycleEndDate,
+  getCycleDuration
 } from "../features/usersJourney/UserSlice";
 import firebase from "../FirebaseConfig";
+import { addDaysToStringDate } from "../utils/CalculateDateDiffInDays";
 
 const ConfirmEstablishedDetailsPage = () => {
   const purityDaysRedux = useSelector(getPurityCycleDays);
@@ -24,31 +26,37 @@ const ConfirmEstablishedDetailsPage = () => {
   const estCycleStartDateRedux = useSelector(getEstablishedCycleStartDate);
   const estCycleEndDateRedux = useSelector(getEstablishedCycleEndDate);
   const userEmailRedux = useSelector(getUserEmail);
-  const nextCycleStartDateRedux = useSelector(getNextCycleStartDate);
+  const cycleDurationRedux = useSelector(getCycleDuration);
   const nextCycleEndDateRedux = useSelector(getNextCycleEndDate);
 
   // NB: convert string date to timestamp before submission to DB
-  const timeStampedCycleStartDate = convertStringDateToFirebaseTimestamp(
-    estCycleStartDateRedux
-  );
-  const timestampedCycleEndDate =
-    convertStringDateToFirebaseTimestamp(estCycleEndDateRedux);
+  // const timeStampedCycleStartDate = convertStringDateToFirebaseTimestamp(
+  //   estCycleStartDateRedux
+  // );
+  // const timestampedCycleEndDate =
+  //   convertStringDateToFirebaseTimestamp(estCycleEndDateRedux);
 
-  const timeStampedNextCycleStartDate = convertStringDateToFirebaseTimestamp(
-    nextCycleStartDateRedux
-  );
- 
-  const timeStampedNextCycleEndDate = convertStringDateToFirebaseTimestamp(
-    nextCycleEndDateRedux
-  );
+  // const timeStampedNextCycleStartDate = convertStringDateToFirebaseTimestamp(
+  //   nextCycleStartDateRedux
+  // );
 
-  console.log(
-    "==formatted fb timestamp:",
-    timeStampedNextCycleStartDate,
-    timeStampedNextCycleEndDate
-  );
+  // const timeStampedNextCycleEndDate = convertStringDateToFirebaseTimestamp(
+  //   nextCycleEndDateRedux
+  // );
+
+  // console.log(
+  //   "==formatted fb timestamp:",
+  //   timeStampedNextCycleStartDate,
+  //   timeStampedNextCycleEndDate
+  // );
   console.log("confirmEDP => esCycStartDate:", estCycleStartDateRedux);
   const navigate = useNavigate();
+
+  const nextCycleDateCalculated = addDaysToStringDate(
+    estCycleEndDateRedux,
+    Number(purityDaysRedux)
+  );
+  console.log("calculated addDays to string date:", nextCycleDateCalculated);
 
   const handleSubmitForm = async (e) => {
     e.preventDefault();
@@ -64,17 +72,18 @@ const ConfirmEstablishedDetailsPage = () => {
       cycleDetailsRef.set({
         name: userNameRedux,
         age: userAgeRedux,
-        previous_cycle_start_date: timeStampedCycleStartDate,
-        previous_cycle_end_date: timestampedCycleEndDate,
-        current_cycle_start_date: timeStampedCycleStartDate,
-        current_cycle_end_date: timestampedCycleEndDate,
+        previous_cycle_start_date: estCycleStartDateRedux,
+        previous_cycle_end_date: estCycleEndDateRedux,
+        current_cycle_start_date: estCycleStartDateRedux,
+        current_cycle_end_date: estCycleEndDateRedux,
+        current_cycle_duration: cycleDurationRedux,
         purity_days_between_cycles: Number(purityDaysRedux),
         document_id: user.uid,
         account_email: userEmailRedux,
         details_submitted_date: new Date(),
         cycle_status: "unconfirmed",
-        next_cycle_start_date: timeStampedNextCycleStartDate,
-        next_cycle_end_date: timeStampedNextCycleEndDate,
+        next_cycle_start_date: nextCycleDateCalculated,
+        next_cycle_end_date: nextCycleEndDateRedux,
       });
 
       userRef.update({

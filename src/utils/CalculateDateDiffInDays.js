@@ -65,3 +65,27 @@ export const isISODate = (dateString) => {
 export const convertDateStringToJsObject = (dateString) => {
   return new Date(dateString);
 };
+
+export const addDaysToStringDate = (stringDate, numOfDaysToAdd) => {
+  let dateObj = new Date(stringDate);
+  dateObj.setDate(dateObj.getDate() + numOfDaysToAdd);
+
+  let year = dateObj.getFullYear();
+  let month = (dateObj.getMonth() + 1).toString().padStart(2, '0');
+  let day = dateObj.getDate().toString().padStart(2, '0');
+
+  return `${year}-${month}-${day}`;
+}
+
+export const calculateDateDifferenceInDays = (firstDateString, secondDateString) => {
+  //convert Date strings to js date objects
+  let date1 = new Date(firstDateString);
+  let date2 = new Date(secondDateString);
+
+  //claculate diff in milliseconds
+  let timeDiff = date2 - date1;
+
+  // calculate number of days
+  let daysDiff = timeDiff / (1000 * 3600 * 24);
+  return daysDiff;
+}

@@ -7,13 +7,14 @@ const initialState = {
   loggedInUser: "",
   userEmail: "",
   purityCycleDays: 0,
-  userName: '',
+  userName: "",
   userAge: 0,
   establishedCycleStartDate: null,
   establishedCycleEndDate: null,
   nextCycleStartDate: null,
   nextCycleEndDate: null,
-
+  isLoggedInFirstTime: false,
+  cycleDuration: 0,
 };
 
 export const userSlice = createSlice({
@@ -53,7 +54,12 @@ export const userSlice = createSlice({
     setNextCycleEndDate: (state, action) => {
       state.nextCycleEndDate = action.payload;
     },
-  
+    setIsLoggedInFirstTime: (state, action) => {
+      state.isLoggedInFirstTime = action.payload;
+    },
+    setCycleDuration: (state, action) => {
+      state.cycleDuration = action.payload;
+    },
   },
 });
 
@@ -69,7 +75,8 @@ export const {
   setEstablishedCycleEndDate,
   setNextCycleStartDate,
   setNextCycleEndDate,
-  
+  setIsLoggedInFirstTime,
+  setCycleDuration,
 } = userSlice.actions;
 
 // The functions below are called selectors and allow us to select a value from the state.
@@ -80,9 +87,15 @@ export const getUserEmail = (state) => state.userSlice.userEmail;
 export const getPurityCycleDays = (state) => state.userSlice.purityCycleDays;
 export const getUserName = (state) => state.userSlice.userName;
 export const getUserAge = (state) => state.userSlice.userAge;
-export const getEstablishedCycleStartDate = (state) => state.userSlice.establishedCycleStartDate;
-export const getEstablishedCycleEndDate = (state) => state.userSlice.establishedCycleEndDate;
-export const getNextCycleStartDate = (state) => state.userSlice.nextCycleStartDate;
+export const getEstablishedCycleStartDate = (state) =>
+  state.userSlice.establishedCycleStartDate;
+export const getEstablishedCycleEndDate = (state) =>
+  state.userSlice.establishedCycleEndDate;
+export const getNextCycleStartDate = (state) =>
+  state.userSlice.nextCycleStartDate;
 export const getNextCycleEndDate = (state) => state.userSlice.nextCycleEndDate;
+export const getIsLoggedInFirstTime = (state) =>
+  state.userSlice.isLoggedInFirstTime;
+export const getCycleDuration = (state) => state.userSlice.cycleDuration;
 
 export default userSlice.reducer;

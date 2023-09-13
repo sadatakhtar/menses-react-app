@@ -59,7 +59,7 @@ const App = () => {
         <Route path="/first-time" element={<FirstTimeMenuPage user={user} />} />c
         <Route path="/confirm-details" element={<ConfirmEstablishedDetailsPage />} />
         <Route path="/initial-results" element={<OutputInitialResultsPage />} />
-        <Route path="/dashboard" element={<OutputInitialResultsPage />} />
+        <Route path="/dashboard" element={<OutputInitialResultsPage user={user}/>} />
         <Route path="/started-bleeding" element={<StartedBleedingPage />} />
       </Routes>
     </>
