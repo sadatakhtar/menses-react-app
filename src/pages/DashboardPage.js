@@ -63,9 +63,9 @@ const DashboardPage = ({ user }) => {
           <p className="mb-2">
             <span style={{ color: "black" }}>Hi {userName}, </span>
             <br />
-            welcome to your dashboard. If you experience unexpected bleeding
-            after your menstrual cycle has just finished and you need to track
-            it by clicking{" "}
+            Welcome to your dashboard. In the event that you encounter
+            unexpected bleeding after your recent menstrual cycle has concluded,
+            and you wish to record it, simply click the{" "}
             <span style={{ color: "black", fontWeight: 500 }}>
               "Started bleeding again"
             </span>{" "}
