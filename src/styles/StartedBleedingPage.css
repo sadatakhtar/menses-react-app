@@ -1,5 +1,4 @@
 .started-container {
-    border: 1px solid red;
     display: flex;
     justify-content:center;
     /* align-items: center; */
@@ -9,6 +8,7 @@
 
 .last-cycle {
     border: 1px solid black;
+    border-radius: 6px;
     padding: 20px;
     margin-right: 10px;
     height: 30vh;
@@ -16,6 +16,7 @@
 
 .additional-details {
     border: 1px solid black;
+    border-radius: 6px;
     padding: 20px;
     margin-left: 10px;
     height: 30vh;
