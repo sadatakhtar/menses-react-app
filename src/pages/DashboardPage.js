@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "../styles/DashboardPage.css";
 import {
   getEstablishedCycleStartDate,
   getEstablishedCycleEndDate,
@@ -7,7 +8,6 @@ import {
   getCycleDuration,
 } from "../features/usersJourney/UserSlice";
 import { useSelector } from "react-redux";
-// import ResultsForm from '../components/general/ResultsForm';
 import Menu from "../components/general/Menu";
 import firebase from "../FirebaseConfig";
 import { calculateDateDifferenceInDays } from "../utils/CalculateDateDiffInDays";
@@ -19,7 +19,7 @@ const DashboardPage = ({ user }) => {
   const cycleEndDateRedux = useSelector(getEstablishedCycleEndDate);
   const nextCycleStartDateRedux = useSelector(getNextCycleStartDate);
   const nextCycleEndDateRedux = useSelector(getNextCycleEndDate);
-  const cycleDurationRedux = useSelector(getCycleDuration)
+  const cycleDurationRedux = useSelector(getCycleDuration);
 
   useEffect(() => {
     async function fetchCycleData() {
@@ -45,20 +45,31 @@ const DashboardPage = ({ user }) => {
   let cycleDataNonState;
   cycleDataNonState = cycleData;
 
-  console.log('in dashboard getCycleDuration:', cycleDurationRedux)
+  console.log("in dashboard getCycleDuration:", cycleDurationRedux);
 
   let firstDate = cycleDataNonState[0]?.previous_cycle_start_date;
   let secondDate = cycleDataNonState[0]?.previous_cycle_end_date;
-  const calculatedDuration = calculateDateDifferenceInDays(firstDate, secondDate);
+  const calculatedDuration = calculateDateDifferenceInDays(
+    firstDate,
+    secondDate
+  );
+  const userName = cycleDataNonState[0]?.name;
 
   const pageModel = (
     <div>
-      {/* <ResultsForm title="Dashboard" user={user}/> */}
       <div className="results-container">
         <form>
           <h2>Dashboard</h2>
           <p className="mb-2">
-            Results are calculated based on previously submitted data
+            <span style={{ color: "black" }}>Hi {userName}, </span>
+            <br />
+            welcome to your dashboard. If you experience unexpected bleeding
+            after your menstrual cycle has just finished and you need to track
+            it by clicking{" "}
+            <span style={{ color: "black", fontWeight: 500 }}>
+              "Started bleeding again"
+            </span>{" "}
+            button below and add the new start and end dates.
           </p>
           <div className="label-container">
             <div className="label-div">
@@ -81,8 +92,8 @@ const DashboardPage = ({ user }) => {
               <label>Next estimated cycle start date: </label>
               <span style={{ color: "green" }}>
                 {cycleDataNonState.length > 0
-                ? cycleDataNonState[0].next_cycle_start_date
-                : nextCycleStartDateRedux}
+                  ? cycleDataNonState[0].next_cycle_start_date
+                  : nextCycleStartDateRedux}
               </span>
             </div>
 
@@ -90,20 +101,27 @@ const DashboardPage = ({ user }) => {
               <label>Next estimated cycle end date:</label>
               <span style={{ color: "green" }}>
                 {cycleDataNonState.length > 0
-                ? cycleDataNonState[0].next_cycle_end_date
-                : nextCycleEndDateRedux}
+                  ? cycleDataNonState[0].next_cycle_end_date
+                  : nextCycleEndDateRedux}
               </span>
             </div>
 
             <div className="label-div">
               <label>Previous cycle duration:</label>
               <span style={{ color: "green" }}>
-                {calculatedDuration ? calculatedDuration : cycleDurationRedux}
+                {calculatedDuration ? calculatedDuration : cycleDurationRedux}{" "}
+                Days
               </span>
             </div>
           </div>
         </form>
+        <div className="dashboard-second-p">
+          <p className="mb-2">
+            Results are calculated based on previously submitted data.
+          </p>
+        </div>
       </div>
+
       <Menu />
     </div>
   );
