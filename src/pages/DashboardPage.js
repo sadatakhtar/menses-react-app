@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import "../styles/DashboardPage.css";
 import {
   getEstablishedCycleStartDate,
@@ -6,6 +7,7 @@ import {
   getNextCycleStartDate,
   getNextCycleEndDate,
   getCycleDuration,
+  setCycleDataFromFirestore,
 } from "../features/usersJourney/UserSlice";
 import { useSelector } from "react-redux";
 import Menu from "../components/general/Menu";
@@ -20,6 +22,8 @@ const DashboardPage = ({ user }) => {
   const nextCycleStartDateRedux = useSelector(getNextCycleStartDate);
   const nextCycleEndDateRedux = useSelector(getNextCycleEndDate);
   const cycleDurationRedux = useSelector(getCycleDuration);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     async function fetchCycleData() {
@@ -44,8 +48,7 @@ const DashboardPage = ({ user }) => {
 
   let cycleDataNonState;
   cycleDataNonState = cycleData;
-
-  console.log("in dashboard getCycleDuration:", cycleDurationRedux);
+  dispatch(setCycleDataFromFirestore(cycleData));
 
   let firstDate = cycleDataNonState[0]?.previous_cycle_start_date;
   let secondDate = cycleDataNonState[0]?.previous_cycle_end_date;

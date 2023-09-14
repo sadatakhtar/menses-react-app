@@ -15,6 +15,7 @@ const initialState = {
   nextCycleEndDate: null,
   isLoggedInFirstTime: false,
   cycleDuration: 0,
+  cycleDataFromFirestore: [],
 };
 
 export const userSlice = createSlice({
@@ -60,6 +61,9 @@ export const userSlice = createSlice({
     setCycleDuration: (state, action) => {
       state.cycleDuration = action.payload;
     },
+    setCycleDataFromFirestore: (state, action) => {
+      state.cycleDataFromFirestore = action.payload;
+    },
   },
 });
 
@@ -77,6 +81,8 @@ export const {
   setNextCycleEndDate,
   setIsLoggedInFirstTime,
   setCycleDuration,
+  setCycleDataFromFirestore,
+
 } = userSlice.actions;
 
 // The functions below are called selectors and allow us to select a value from the state.
@@ -97,5 +103,6 @@ export const getNextCycleEndDate = (state) => state.userSlice.nextCycleEndDate;
 export const getIsLoggedInFirstTime = (state) =>
   state.userSlice.isLoggedInFirstTime;
 export const getCycleDuration = (state) => state.userSlice.cycleDuration;
+export const getCycleDataFromFirestore = (state) => state.userSlice.cycleDataFromFirestore;
 
 export default userSlice.reducer;
