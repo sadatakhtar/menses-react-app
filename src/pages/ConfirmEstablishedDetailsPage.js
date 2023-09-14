@@ -14,10 +14,10 @@ import {
   getUserEmail,
   // getNextCycleStartDate,
   getNextCycleEndDate,
-  getCycleDuration
+  // getCycleDuration
 } from "../features/usersJourney/UserSlice";
 import firebase from "../FirebaseConfig";
-import { addDaysToStringDate } from "../utils/CalculateDateDiffInDays";
+import { addDaysToStringDate, calculatStringDateDiffInDays } from "../utils/CalculateDateDiffInDays";
 
 const ConfirmEstablishedDetailsPage = () => {
   const purityDaysRedux = useSelector(getPurityCycleDays);
@@ -26,29 +26,10 @@ const ConfirmEstablishedDetailsPage = () => {
   const estCycleStartDateRedux = useSelector(getEstablishedCycleStartDate);
   const estCycleEndDateRedux = useSelector(getEstablishedCycleEndDate);
   const userEmailRedux = useSelector(getUserEmail);
-  const cycleDurationRedux = useSelector(getCycleDuration);
+  //const cycleDurationRedux = useSelector(getCycleDuration);
   const nextCycleEndDateRedux = useSelector(getNextCycleEndDate);
 
-  // NB: convert string date to timestamp before submission to DB
-  // const timeStampedCycleStartDate = convertStringDateToFirebaseTimestamp(
-  //   estCycleStartDateRedux
-  // );
-  // const timestampedCycleEndDate =
-  //   convertStringDateToFirebaseTimestamp(estCycleEndDateRedux);
-
-  // const timeStampedNextCycleStartDate = convertStringDateToFirebaseTimestamp(
-  //   nextCycleStartDateRedux
-  // );
-
-  // const timeStampedNextCycleEndDate = convertStringDateToFirebaseTimestamp(
-  //   nextCycleEndDateRedux
-  // );
-
-  // console.log(
-  //   "==formatted fb timestamp:",
-  //   timeStampedNextCycleStartDate,
-  //   timeStampedNextCycleEndDate
-  // );
+  console.log('=======================nced=====>', nextCycleEndDateRedux)
   console.log("confirmEDP => esCycStartDate:", estCycleStartDateRedux);
   const navigate = useNavigate();
 
@@ -57,6 +38,14 @@ const ConfirmEstablishedDetailsPage = () => {
     Number(purityDaysRedux)
   );
   console.log("calculated addDays to string date:", nextCycleDateCalculated);
+
+  // NB: calculate next cycle end date here
+  const daysInCycle = calculatStringDateDiffInDays(estCycleStartDateRedux, estCycleEndDateRedux)
+  console.log('*****************> days in cycle:', Math.abs(daysInCycle))
+  const positiveDaysInCycle = Math.abs(daysInCycle);
+  const nextCycleEndDateCalculated = addDaysToStringDate(nextCycleDateCalculated, positiveDaysInCycle)
+  console.log('nextCycleEndDate:---->', nextCycleEndDateCalculated )
+
 
   const handleSubmitForm = async (e) => {
     e.preventDefault();
@@ -76,24 +65,21 @@ const ConfirmEstablishedDetailsPage = () => {
         previous_cycle_end_date: estCycleEndDateRedux,
         current_cycle_start_date: estCycleStartDateRedux,
         current_cycle_end_date: estCycleEndDateRedux,
-        current_cycle_duration: cycleDurationRedux,
+        current_cycle_duration: positiveDaysInCycle,
         purity_days_between_cycles: Number(purityDaysRedux),
         document_id: user.uid,
         account_email: userEmailRedux,
         details_submitted_date: new Date(),
         cycle_status: "unconfirmed",
         next_cycle_start_date: nextCycleDateCalculated,
-        next_cycle_end_date: nextCycleEndDateRedux,
+        next_cycle_end_date: nextCycleEndDateCalculated,
       });
 
       userRef.update({
         firstTimeLoggedIn: false,
       });
-      console.log("Changed firsttimeloggedin to false");
       console.log("Successfully added data to db");
       navigate("/confirmation");
-
-      // TODO: add redirection here
     } catch (error) {
       console.error("DB entry failed", error);
     }
@@ -124,6 +110,11 @@ const ConfirmEstablishedDetailsPage = () => {
           <div className="label-div">
             <label htmlFor="floatCycleEndDate">End date:</label>
             <span style={{ color: "green" }}>{estCycleEndDateRedux}</span>
+          </div>
+
+          <div className="label-div">
+            <label htmlFor="floatCycleDuration">Cycle duration:</label>
+            <span style={{ color: "green" }}>{positiveDaysInCycle}</span>
           </div>
 
           <div className="label-div">

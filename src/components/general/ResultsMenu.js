@@ -4,7 +4,7 @@ import "../../styles/ResultsMenu.css";
 
 const Menu = () => {
   const navigate = useNavigate();
-  const handleBtn = () => {
+  const handleBtn = async () => {
     navigate("/");
   };
 

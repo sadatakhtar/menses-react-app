@@ -44,7 +44,7 @@ const WelcomePage = ({ user }) => {
   console.log('isLoggedInRedux 2:', isLoggedInFirstTimeRedux)
 
   const handleNextBtn = () => {
-    if (isLoggedInFirstTimeRedux) {
+    if (dbData) {
       navigate("/first-time");
     } else {
       navigate("/dashboard");
@@ -54,7 +54,7 @@ const WelcomePage = ({ user }) => {
 
   const pageModel = (
     <div>
-      {!isLoggedInFirstTimeRedux ? (
+      {!dbData ? (
         <DashboardPage user={user}/>
       ) : (
         <>
