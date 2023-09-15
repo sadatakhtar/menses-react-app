@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/StartedBleedingPage.css";
 import { useSelector } from "react-redux";
+import { useNavigate } from 'react-router-dom'
 import HeaderWithoutInputs from "../components/general/HeaderWithoutInputs";
 import {
   getEstablishedCycleStartDate,
@@ -10,11 +11,23 @@ import {
 import Footer from "../components/general/Footer";
 
 const StartedBleedingPage = () => {
+  const [bleedStartInput, setBleedStartInput] = useState("");
+  const [bleedEndInput, setBleedEndInput] = useState("");
+
   const lastCycleStartDateRedux = useSelector(getEstablishedCycleStartDate);
   const presumedLastCycleEndDateRedux = useSelector(getEstablishedCycleEndDate);
   const cycleDataFromFsRedux = useSelector(getCycleDataFromFirestore);
 
+  const navigate = useNavigate();
+
   console.log("---------------->>> db data:", cycleDataFromFsRedux);
+  console.log("Bleed start input: ", bleedStartInput);
+  console.log("Bleed end input: ", bleedEndInput);
+
+  const handleContinueBtn = () => {
+    navigate('/confirm-new-bleed-details')
+  }
+
   return (
     <>
       <HeaderWithoutInputs />
@@ -37,7 +50,6 @@ const StartedBleedingPage = () => {
                 ? cycleDataFromFsRedux[0].previous_cycle_end_date
                 : presumedLastCycleEndDateRedux}
             </span>
-  
           </div>
         </div>
         <div className="additional-details">
@@ -45,15 +57,28 @@ const StartedBleedingPage = () => {
           <div className="label-div">
             <p>New bleed start date: </p>
             <label>
-              <input type="date" required />
+              <input
+                type="date"
+                required
+                value={bleedStartInput}
+                onChange={(e) => setBleedStartInput(e.target.value)}
+              />
             </label>
           </div>
 
           <div className="label-div">
             <p>New bleed end date: </p>
             <label>
-              <input type="date" required />
+              <input
+                type="date"
+                required
+                value={bleedEndInput}
+                onChange={(e) => setBleedEndInput(e.target.value)}
+              />
             </label>
+          </div>
+          <div className="bleed-btn">
+            <button className="btn btn-primary" onClick={handleContinueBtn}>Continue</button>
           </div>
         </div>
       </div>
