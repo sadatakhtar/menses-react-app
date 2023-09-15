@@ -25,7 +25,7 @@ const StartedBleedingPage = () => {
   console.log("Bleed end input: ", bleedEndInput);
 
   const handleContinueBtn = () => {
-    navigate('/confirm-new-bleed-details')
+    navigate('/confirm-bleed-details')
   }
 
   return (

@@ -2,7 +2,7 @@ import React from 'react'
 
 const ConfirmNewBleedPage = () => {
   return (
-    <div>ConfirmNewBleedPage</div>
+    <div>ConfirmNewBleedPage here</div>
   )
 }
 

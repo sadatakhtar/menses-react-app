@@ -62,7 +62,7 @@ const App = () => {
         <Route path="/initial-results" element={<OutputInitialResultsPage />} />
         <Route path="/dashboard" element={<OutputInitialResultsPage user={user}/>} />
         <Route path="/started-bleeding" element={<StartedBleedingPage />} />
-        <Route path="/confirm-new-bleed-details" element={<ConfirmNewBleedPage />} />
+        <Route path="/confirm-bleed-details" element={<ConfirmNewBleedPage />} />
 
       </Routes>
     </>
