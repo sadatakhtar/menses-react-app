@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   getEstablishedCycleStartDate,
@@ -22,20 +22,22 @@ const ResultsForm = ({ title }) => {
 
   let cycleDuration;
 
-  // TODO: maybe remove this logic as diff in days has been
-  //       already worked out in (cycle details form)
-  try {
-    // NB: calculate duration of cycle
-    const diffInDays = calculatStringDateDiffInDays(
-      cycleEndDateRedux,
-      cycleStartDateRedux
-    );
-    console.log("DDDDDDDFFFFFF", diffInDays);
-    cycleDuration = Number(diffInDays);
-    dispatch(setCycleDuration(cycleDuration));
-  } catch (error) {
-    console.error(error);
-  }
+  // Calculate cycleDuration in an effect
+  useEffect(() => {
+    try {
+      const diffInDays = calculatStringDateDiffInDays(
+        cycleEndDateRedux,
+        cycleStartDateRedux
+      );
+      console.log("DDDDDDDFFFFFF", diffInDays);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      cycleDuration = Number(diffInDays);
+      dispatch(setCycleDuration(cycleDuration));
+    } catch (error) {
+      console.error(error);
+    }
+  }, [cycleStartDateRedux, cycleEndDateRedux, dispatch]);
+
   console.log("cycleDuration:", cycleDuration);
   return (
     <div className="results-container">

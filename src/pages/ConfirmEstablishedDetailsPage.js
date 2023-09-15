@@ -69,7 +69,6 @@ const ConfirmEstablishedDetailsPage = () => {
         purity_days_between_cycles: Number(purityDaysRedux),
         document_id: user.uid,
         account_email: userEmailRedux,
-        details_submitted_date: new Date(),
         cycle_status: "unconfirmed",
         next_cycle_start_date: nextCycleDateCalculated,
         next_cycle_end_date: nextCycleEndDateCalculated,
