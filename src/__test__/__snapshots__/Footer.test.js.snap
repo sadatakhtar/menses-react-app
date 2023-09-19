@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer Component Footer snapshot created without errors 1`] = `
+<div>
+  <div>
+    <footer>
+      <p
+        data-testid="paragraph"
+      >
+        © 2023 CycleSync. All rights reserved.
+      </p>
+    </footer>
+  </div>
+</div>
+`;
