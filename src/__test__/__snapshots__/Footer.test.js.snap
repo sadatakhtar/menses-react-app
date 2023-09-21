@@ -4,9 +4,7 @@ exports[`Footer Component Footer snapshot created without errors 1`] = `
 <div>
   <div>
     <footer>
-      <p
-        data-testid="paragraph"
-      >
+      <p>
         © 2023 CycleSync. All rights reserved.
       </p>
     </footer>

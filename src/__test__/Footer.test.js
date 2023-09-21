@@ -1,21 +1,24 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import Footer from '../components/general/Footer';
+import React from "react";
+import { render, screen } from "@testing-library/react";
+import Footer from "../components/general/Footer";
 
-describe('Footer Component', () => {
-  test('Footer snapshot created without errors', () => {
+describe("Footer Component", () => {
+  it("Footer snapshot created without errors", () => {
     const { container } = render(<Footer />);
     expect(container).toMatchSnapshot();
   });
 
-  test.skip('Footer contains 1 paragraph tag', () => {
-    const pTag = screen.getByTestId('paragraph');
-    expect(pTag).toBe(1)
+  it("displays the copyright text", () => {
+    render(<Footer />);
+    const copyrightText = screen.getByText(
+      /© 2023 CycleSync. All rights reserved./i
+    );
+    expect(copyrightText).toBeInTheDocument();
   });
 
-  test.skip('Footer contains a link to the privacy policy', () => {
-    // Your test logic here
+  it.skip("Should render 1 p tag", () => {
+    render(<Footer />);
+    const pTag = screen.getByRole('p');
+    expect(pTag).toBe(1);
   });
-
-
 });
